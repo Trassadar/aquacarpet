@@ -1,26 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Theme A: Clean Premium (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #050040;
+  --aqua: #00AEEF;
+  --light-aqua: #75C7E9;
+  --background: #F7FAFF;
+  --muted: #505076;
+  --card-bg: #ffffff;
+  --text-primary: #050040;
+  --text-secondary: #505076;
+  --border-color: #e2e8f0;
+  --hero-bg: linear-gradient(135deg, #050040 0%, #00AEEF 100%);
+}
+
+/* Theme B: Dark Navy Premium */
+[data-theme="dark-navy"] {
+  --navy: #050040;
+  --aqua: #00AEEF;
+  --light-aqua: #75C7E9;
+  --background: #050040;
+  --muted: #75C7E9;
+  --card-bg: #1a1a3e;
+  --text-primary: #ffffff;
+  --text-secondary: #75C7E9;
+  --border-color: #2a2a5e;
+  --hero-bg: linear-gradient(135deg, #050040 0%, #1a1a3e 100%);
+}
+
+/* Theme C: Fresh Aqua */
+[data-theme="fresh-aqua"] {
+  --navy: #050040;
+  --aqua: #00AEEF;
+  --light-aqua: #75C7E9;
+  --background: #f0f9ff;
+  --muted: #0284c7;
+  --card-bg: #ffffff;
+  --text-primary: #0c4a6e;
+  --text-secondary: #0284c7;
+  --border-color: #bae6fd;
+  --hero-bg: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #22d3ee 100%);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-foreground: var(--text-primary);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Inter', sans-serif;
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom utility classes */
+.bg-navy { background-color: var(--navy); }
+.bg-aqua { background-color: var(--aqua); }
+.bg-light-aqua { background-color: var(--light-aqua); }
+.bg-card { background-color: var(--card-bg); }
+.text-navy { color: var(--navy); }
+.text-aqua { color: var(--aqua); }
+.text-light-aqua { color: var(--light-aqua); }
+.text-muted { color: var(--muted); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.border-custom { border-color: var(--border-color); }
+
+.hero-gradient {
+  background: var(--hero-bg);
 }
