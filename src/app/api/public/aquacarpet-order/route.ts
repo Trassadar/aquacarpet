@@ -212,8 +212,29 @@ export async function POST(request: NextRequest) {
     const adresaLinie1 = `${body.strada} ${body.numar}${body.bloc ? ` Bl. ${body.bloc}` : ''}${body.scara ? ` Sc. ${body.scara}` : ''}${body.ap ? ` Ap. ${body.ap}` : ''}`;
     const adresa = `${body.oras}, ${adresaLinie1}`;
 
+    // Gaseste userId-ul owner-ului tenantului (pentru Firestore rules)
+    let userId = tenantId; // Fallback: folosim tenantId ca userId daca nu gasim altul
+    try {
+      const { getDb } = await import('@/lib/firebaseAdmin');
+      const db = getDb();
+      const tenantDoc = await db.collection('tenants').doc(tenantId).get();
+      if (tenantDoc.exists) {
+        const tenantData = tenantDoc.data();
+        if (tenantData?.createdByUid) {
+          userId = tenantData.createdByUid;
+        } else if (tenantData?.uid) {
+          userId = tenantData.uid;
+        }
+      }
+    } catch (err) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('Nu am putut gasi userId din tenant, folosim tenantId:', err);
+      }
+    }
+
     // Create order data
     const orderData = {
+      userId: userId, // IMPORTANT: pentru Firestore rules
       // Date client
       nume: body.nume,
       telefon: normalizePhone(body.telefon),
@@ -221,9 +242,7 @@ export async function POST(request: NextRequest) {
       // Date comanda
       dataComanda: serverTimestamp(),
       // Status
-      status: 'pending',
-      etapa: 'comanda-noua',
-      subetapa: 'asteptare-confirmare',
+      status: 'inregistrata',
       // Financiar
       pretM2: 13,
       min1m2: false,
