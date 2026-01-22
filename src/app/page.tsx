@@ -20,13 +20,19 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
-                    href="#comanda" 
-                    className="bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-8 rounded-lg transition-colors text-center"
+                    href="tel:0757219695" 
+                    className="bg-white text-navy font-semibold py-3 px-8 rounded-lg hover:bg-light-aqua transition-colors text-center"
                   >
-                    Comanda Ridicare
+                    📞 Comandă Telefon
                   </a>
                   <a 
-                    href="#preturi" 
+                    href="/comanda" 
+                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors text-center"
+                  >
+                    🖥️ Comandă Online
+                  </a>
+                  <a 
+                    href="/preturi" 
                     className="border-2 border-white hover:bg-white hover:text-navy text-white font-semibold py-3 px-8 rounded-lg transition-colors text-center"
                   >
                     Vezi Preturi
@@ -41,7 +47,7 @@ export default function Home() {
                     className="h-16 w-auto mb-4 mx-auto"
                   />
                   <h3 className="text-2xl font-bold mb-2">13 RON/mp</h3>
-                  <p className="text-light-aqua">Comanda minima 78 RON</p>
+                  <p className="text-light-aqua">Comanda minima 91 RON</p>
                 </div>
               </div>
             </div>
@@ -93,10 +99,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Cum functioneaza?
+                Comandă Telefon sau Online
               </h2>
               <p className="text-secondary text-lg">
-                Proces simplu in 4 pasi
+                Sună sau completează formularul
               </p>
             </div>
             
@@ -105,24 +111,24 @@ export default function Home() {
                 <div className="bg-aqua text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">
                   1
                 </div>
-                <h3 className="font-semibold mb-2 text-primary">Comanda Online</h3>
-                <p className="text-secondary">Completezi formularul de comanda</p>
+                <h3 className="font-semibold mb-2 text-primary">Comandă Telefon sau Online</h3>
+                <p className="text-secondary">Sună sau completează formularul</p>
               </div>
               
               <div className="text-center">
                 <div className="bg-aqua text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">
                   2
                 </div>
-                <h3 className="font-semibold mb-2 text-primary">Ridicare Gratuita</h3>
-                <p className="text-secondary">Venim sa ridicam covoarele</p>
+                <h3 className="font-semibold mb-2 text-primary">Ridicare Gratuită</h3>
+                <p className="text-secondary">Venim să ridicăm covoarele</p>
               </div>
               
               <div className="text-center">
                 <div className="bg-aqua text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4 font-bold">
                   3
                 </div>
-                <h3 className="font-semibold mb-2 text-primary">Spalare Profesionala</h3>
-                <p className="text-secondary">Curatam cu echipamente moderne</p>
+                <h3 className="font-semibold mb-2 text-primary">Spălare Profesională</h3>
+                <p className="text-secondary">Curățăm cu echipamente moderne</p>
               </div>
               
               <div className="text-center">
@@ -130,7 +136,7 @@ export default function Home() {
                   4
                 </div>
                 <h3 className="font-semibold mb-2 text-primary">Livrare la Domiciliu</h3>
-                <p className="text-secondary">Returnam covoarele curate</p>
+                <p className="text-secondary">Returnăm covoarele curate</p>
               </div>
             </div>
           </div>

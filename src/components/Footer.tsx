@@ -67,10 +67,10 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-aqua">Link-uri Rapide</h4>
             <ul className="space-y-2">
-              <li><a href="#servicii" className="text-light-aqua hover:text-aqua transition-colors">Servicii</a></li>
-              <li><a href="#preturi" className="text-light-aqua hover:text-aqua transition-colors">Preturi</a></li>
-              <li><a href="#comanda" className="text-light-aqua hover:text-aqua transition-colors">Comanda Online</a></li>
-              <li><a href="#faq" className="text-light-aqua hover:text-aqua transition-colors">Intrebari Frecvente</a></li>
+              <li><a href="/servicii" className="text-light-aqua hover:text-aqua transition-colors">Servicii</a></li>
+              <li><a href="/preturi" className="text-light-aqua hover:text-aqua transition-colors">Preturi</a></li>
+              <li><a href="/comanda" className="text-light-aqua hover:text-aqua transition-colors">Comanda Online</a></li>
+              <li><a href="/faq" className="text-light-aqua hover:text-aqua transition-colors">Intrebari Frecvente</a></li>
             </ul>
           </div>
 
@@ -78,11 +78,12 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4 text-aqua">Contact</h4>
             <ul className="space-y-2 text-light-aqua">
-              <li>📞 07xx xxx xxx</li>
+              <li>📞 0757 219 695</li>
               <li>📧 contact@aquacarpet.ro</li>
-              <li>📍 Brasov, Romania</li>
-              <li>🕐 Luni - Vineri: 9:00 - 18:00</li>
-              <li>🕐 Sambata: 9:00 - 14:00</li>
+              <li>📍 Str. Soseaua Cristianului Nr.11, Brasov</li>
+              <li>🕐 Luni - Vineri: 8:00 - 18:00</li>
+              <li>🕐 Sambata: 9:00 - 13:00</li>
+              <li>🕐 Duminica: Inchis</li>
             </ul>
           </div>
         </div>
@@ -90,6 +91,28 @@ export default function Footer() {
         {/* Copyright */}
         <div className="border-t border-light-aqua/20 mt-8 pt-8 text-center text-light-aqua">
           <p>&copy; {currentYear} AquaCarpet. Toate drepturile rezervate.</p>
+          <div className="mt-4 space-y-2 text-sm">
+            <p>
+              <a 
+                href="https://anpc.ro/ce-este-sal/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-light-aqua hover:text-aqua transition-colors underline"
+              >
+                ANPC - Soluționarea Online a Litigiilor
+              </a>
+            </p>
+            <p>
+              <a 
+                href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=ro" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-light-aqua hover:text-aqua transition-colors underline"
+              >
+                Platforma Europeană pentru Soluționarea Online a Litigiilor
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

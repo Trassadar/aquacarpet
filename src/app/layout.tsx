@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import FloatingActions from "@/components/FloatingActions";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,7 +10,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "AquaCarpet - Spalatorie Profesionala Covoare Brasov | 13 RON/mp",
-  description: "Spalatorie profesionala covoare in Brasov. Servicii de calitate, transport gratuit, preturi incepand de la 13 RON/mp. Comanda minima 78 RON. Livrare 24-48 ore.",
+  description: "Spalatorie profesionala covoare in Brasov. Servicii de calitate, transport gratuit, preturi incepand de la 13 RON/mp. Comanda minima 91 RON. Livrare 24-48 ore.",
   keywords: "spalatorie covoare brasov, curatat covoare, spalatorie profesionala, preturi spalatorie covoare",
   icons: {
     icon: '/favicon.ico',
@@ -43,6 +44,7 @@ export default function RootLayout({
     <html lang="ro">
       <body className={`${inter.variable} antialiased`}>
         {children}
+        <FloatingActions />
       </body>
     </html>
   );

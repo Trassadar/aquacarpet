@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Preturi Spalatorie Covoare Brasov | 13 RON/mp | AquaCarpet',
-  description: 'Preturi competitive pentru spalatorie covoare in Brasov. 13 RON/mp, comanda minima 78 RON. Servicii profesionale, transport gratuit. Calcul transparent si fara costuri ascunse.',
+  description: 'Preturi competitive pentru spalatorie covoare in Brasov. 13 RON/mp, comanda minima 91 RON. Servicii profesionale, transport gratuit. Calcul transparent si fara costuri ascunse.',
 };
 
 export default function Preturi() {
@@ -12,20 +12,20 @@ export default function Preturi() {
     {
       descriere: 'Covor living (2m x 3m)',
       suprafata: 6,
-      pret: 78,
-      detalii: '6 mp x 13 RON = 78 RON (comanda minima atinsa)'
+      pret: 91,
+      detalii: '6 mp x 13 RON = 78 RON (comanda minima: 7 mp = 91 RON)'
     },
     {
       descriere: 'Set 2 covoare mici (1.5m x 2m fiecare)',
       suprafata: 6,
-      pret: 78,
-      detalii: '3 mp + 3 mp = 6 mp x 13 RON = 78 RON (comanda minima)'
+      pret: 91,
+      detalii: '3 mp + 3 mp = 6 mp x 13 RON = 78 RON (comanda minima: 7 mp = 91 RON)'
     },
     {
       descriere: 'Covor dormitor (2m x 2.5m) + covor baie (1m x 1.5m)',
       suprafata: 6.5,
-      pret: 85,
-      detalii: '5 mp + 1.5 mp = 6.5 mp x 13 RON = 84.5 RON ≈ 85 RON'
+      pret: 91,
+      detalii: '6.5 mp x 13 RON = 84.5 RON ≈ 85 RON (comanda minima: 7 mp = 91 RON)'
     },
     {
       descriere: 'Covor mare (3m x 4m)',
@@ -73,7 +73,7 @@ export default function Preturi() {
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
                 <div className="text-5xl font-bold mb-2">13 RON</div>
                 <div className="text-xl mb-2">pe metru patrat</div>
-                <div className="text-light-aqua">Comanda minima: 78 RON</div>
+                <div className="text-light-aqua">Comanda minima: 91 RON (7 mp)</div>
               </div>
             </div>
           </div>
@@ -100,15 +100,23 @@ export default function Preturi() {
                 </p>
                 <div className="bg-light-aqua/10 rounded-lg p-4 mb-6">
                   <div className="font-semibold text-primary mb-2">Comanda minima:</div>
-                  <div className="text-2xl font-bold text-aqua">78 RON</div>
-                  <div className="text-sm text-muted">(echivalentul a 6 mp)</div>
+                  <div className="text-2xl font-bold text-aqua">91 RON</div>
+                  <div className="text-sm text-muted">(echivalentul a 7 mp)</div>
                 </div>
-                <a 
-                  href="/comanda" 
-                  className="w-full bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
-                >
-                  Comanda Acum
-                </a>
+                <div className="space-y-3">
+                  <a 
+                    href="tel:0757219695" 
+                    className="w-full bg-white text-navy hover:bg-light-aqua font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
+                  >
+                    📞 Comandă Telefon
+                  </a>
+                  <a 
+                    href="/comanda" 
+                    className="w-full bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
+                  >
+                    🖥️ Comandă Online
+                  </a>
+                </div>
               </div>
               
               <div className="bg-card border border-custom rounded-lg p-8">

@@ -3,8 +3,8 @@ import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Spalatorie Covoare Brasov | AquaCarpet | 0759 158 914',
-  description: 'Contacteaza AquaCarpet - spalatorie profesionala covoare in Brasov. Telefon 0759 158 914, program Luni-Sambata 09:00-18:00. Comanda online sau viziteaza-ne.',
+  title: 'Contact Spalatorie Covoare Brasov | AquaCarpet | 0757 219 695',
+  description: 'Contacteaza AquaCarpet - spalatorie profesionala covoare in Brasov. Telefon 0757 219 695, program Luni-Vineri 08:00-18:00, Sambata 09:00-13:00. Comanda online sau viziteaza-ne.',
 };
 
 export default function Contact() {
@@ -12,8 +12,8 @@ export default function Contact() {
     {
       icon: '📞',
       titlu: 'Telefon',
-      detalii: ['0759 158 914', 'Luni - Sambata: 09:00 - 18:00'],
-      link: 'tel:0759158914'
+      detalii: ['0757 219 695', 'Luni - Vineri: 08:00 - 18:00', 'Sambata: 09:00 - 13:00'],
+      link: 'tel:0757219695'
     },
     {
       icon: '📧',
@@ -24,13 +24,13 @@ export default function Contact() {
     {
       icon: '📍',
       titlu: 'Adresa',
-      detalii: ['Brasov, Romania', 'Zona centrala'],
+      detalii: ['Str. Soseaua Cristianului Nr.11, Brasov', 'Zona centrala'],
       link: null
     },
     {
       icon: '🕐',
       titlu: 'Program',
-      detalii: ['Luni - Vineri: 09:00 - 18:00', 'Sambata: 09:00 - 18:00', 'Duminica: Inchis'],
+      detalii: ['Luni - Vineri: 08:00 - 18:00', 'Sambata: 09:00 - 13:00', 'Duminica: Inchis'],
       link: null
     }
   ];
@@ -115,16 +115,16 @@ export default function Contact() {
                       Harta interactiva cu locatia noastra
                     </p>
                     <p className="text-muted text-sm">
-                      Brasov, zona centrala
+                      Str. Soseaua Cristianului Nr.11, Brasov
                     </p>
                   </div>
                 </div>
                 <div className="mt-6 p-4 bg-light-aqua/10 rounded-lg">
                   <h4 className="font-semibold text-primary mb-2">Cum ajungi la noi?</h4>
                   <ul className="text-sm text-secondary space-y-1">
-                    <li>• Autobuz: Linii 1, 2, 5 - statia Centru</li>
+                    <li>• Autobuz: Linii 1, 2, 5 - statia Soseaua Cristianului</li>
                     <li>• Masina: Parcare disponibila in zona</li>
-                    <li>• Pietonal: La 5 minute de centrul vechi</li>
+                    <li>• Pietonal: La 10 minute de centrul vechi</li>
                   </ul>
                 </div>
               </div>
@@ -144,16 +144,24 @@ export default function Contact() {
                   </ul>
                   
                   <div className="bg-navy text-white rounded-lg p-6">
-                    <h4 className="font-semibold mb-3">Comanda rapida</h4>
+                    <h4 className="font-semibold mb-3">Cum dorești să comanzi?</h4>
                     <p className="text-light-aqua mb-4">
-                      Economiseste timp si comanda online. Primesti confirmare imediata!
+                      Alege metoda preferată pentru a comanda serviciile noastre
                     </p>
-                    <a 
-                      href="/comanda" 
-                      className="w-full bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
-                    >
-                      Comanda Online
-                    </a>
+                    <div className="space-y-3">
+                      <a 
+                        href="/comanda" 
+                        className="w-full bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
+                      >
+                        🖥️ Comandă Online
+                      </a>
+                      <a 
+                        href="tel:0757219695" 
+                        className="w-full bg-white text-navy hover:bg-light-aqua font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
+                      >
+                        📞 Comandă Telefon
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -172,16 +180,24 @@ export default function Contact() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="tel:0759158914" 
+                href="tel:0757219695" 
                 className="bg-white text-navy font-semibold py-3 px-8 rounded-lg hover:bg-light-aqua transition-colors inline-block"
               >
-                📞 Suna Acum
+                📞 Comandă Telefon
               </a>
               <a 
                 href="/comanda" 
-                className="border-2 border-white hover:bg-white hover:text-navy text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
+                className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
               >
-                Comanda Online
+                🖥️ Comandă Online
+              </a>
+              <a 
+                href="https://wa.me/40757219695?text=Salut%20AquaCarpet%2C%20vreau%20sa%20fac%20o%20comanda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
+              >
+                💬 WhatsApp
               </a>
             </div>
           </div>
