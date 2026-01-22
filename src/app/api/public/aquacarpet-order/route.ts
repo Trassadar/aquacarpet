@@ -30,7 +30,15 @@ function getClientIP(request: NextRequest): string {
   if (forwarded) {
     return forwarded.split(',')[0].trim();
   }
-  return request.ip || 'unknown';
+  const realIp = request.headers.get('x-real-ip');
+  if (realIp) {
+    return realIp.trim();
+  }
+  const cfConnectingIp = request.headers.get('cf-connecting-ip');
+  if (cfConnectingIp) {
+    return cfConnectingIp.trim();
+  }
+  return 'unknown';
 }
 
 // Rate limiting check
@@ -210,13 +218,8 @@ export async function POST(request: NextRequest) {
       nume: body.nume,
       telefon: normalizePhone(body.telefon),
       email: body.email || '',
-      // Adresa
-      adresaLinie1,
-      adresa,
       // Date comanda
       dataComanda: serverTimestamp(),
-      dataRidicare: body.dataPreferata || '',
-      dataLivrare: '',
       // Status
       status: 'pending',
       etapa: 'comanda-noua',
@@ -231,8 +234,6 @@ export async function POST(request: NextRequest) {
       totalGeoM2: 0,
       totalM2: 0,
       totalTarifM2: 0,
-      // Detalii suplimentare
-      observatii: body.observatii || '',
       nrCovoare: body.nrCovoare || '1',
       // System
       createdAt: serverTimestamp(),
