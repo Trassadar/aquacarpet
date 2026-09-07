@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Servicii Spalatorie Covoare Brasov | AquaCarpet',
   description: 'Servicii profesionale de spalare covoare in Brasov. Spalare, igienizare, uscare, transport gratuit. Calitate garantata la preturi competitive.',
+  alternates: {
+    canonical: 'https://www.aquacarpet.ro/servicii',
+  },
 };
 
 export default function Servicii() {

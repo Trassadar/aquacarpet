@@ -6,6 +6,9 @@ import FAQClient from './FAQClient';
 export const metadata: Metadata = {
   title: 'Intrebari Frecvente | Spalatorie Covoare Brasov | AquaCarpet',
   description: 'Raspunsuri la cele mai frecvente intrebari despre serviciile noastre de spalatorie covoare in Brasov. Program, preturi, transport, timp de livrare si multe altele.',
+  alternates: {
+    canonical: 'https://www.aquacarpet.ro/faq',
+  },
 };
 
 export default function FAQ() {

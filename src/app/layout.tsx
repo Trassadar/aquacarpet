@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.aquacarpet.ro"),
   title: "AquaCarpet - Spalatorie Profesionala Covoare Brasov | 13 RON/mp",
   description: "Spalatorie profesionala covoare in Brasov. Servicii de calitate, transport gratuit, preturi incepand de la 13 RON/mp. Comanda minima 91 RON. Livrare 24-48 ore.",
   keywords: "spalatorie covoare brasov, curatat covoare, spalatorie profesionala, preturi spalatorie covoare",
@@ -17,10 +18,13 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/favicon.ico',
   },
+  alternates: {
+    canonical: "https://www.aquacarpet.ro",
+  },
   openGraph: {
     title: "AquaCarpet - Spalatorie Profesionala Covoare Brasov",
     description: "Servicii profesionale de spalare covoare in Brasov. Transport gratuit, preturi competitive.",
-    url: "https://aquacarpet.ro",
+    url: "https://www.aquacarpet.ro",
     siteName: "AquaCarpet",
     locale: "ro_RO",
     type: "website",

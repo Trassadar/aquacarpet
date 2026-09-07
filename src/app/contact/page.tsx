@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Contact Spalatorie Covoare Brasov | AquaCarpet | 0757 219 695',
   description: 'Contacteaza AquaCarpet - spalatorie profesionala covoare in Brasov. Telefon 0757 219 695, program Luni-Vineri 08:00-18:00, Sambata 09:00-13:00. Comanda online sau viziteaza-ne.',
+  alternates: {
+    canonical: 'https://www.aquacarpet.ro/contact',
+  },
 };
 
 export default function Contact() {

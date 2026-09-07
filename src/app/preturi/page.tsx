@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Preturi Spalatorie Covoare Brasov | 13 RON/mp | AquaCarpet',
   description: 'Preturi competitive pentru spalatorie covoare in Brasov. 13 RON/mp, comanda minima 91 RON. Servicii profesionale, transport gratuit. Calcul transparent si fara costuri ascunse.',
+  alternates: {
+    canonical: 'https://www.aquacarpet.ro/preturi',
+  },
 };
 
 export default function Preturi() {
