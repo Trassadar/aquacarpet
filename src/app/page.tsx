@@ -258,7 +258,7 @@ export default function Home() {
                 Pret spalare covoare Brasov
               </h2>
               <p className="text-secondary text-lg mb-4">
-                Pretul pentru spalare covoare Brasov este simplu si transparent: 13 RON/mp, cu o comanda minima de 91 RON. Nu exista costuri ascunse - platesti doar pentru suprafata reala a covoarelor spalate.
+                Pretul pentru spalare covoare Brasov este simplu si transparent: 13 RON/mp, cu o comanda minima de 91 RON. Tariful este de 13 RON/mp, iar pentru comenzile sub 7 mp se aplica valoarea minima a comenzii de 91 RON.
               </p>
               <p className="text-secondary text-lg">
                 Daca vrei sa vezi exemple de calcul si ce este inclus in pret, poti consulta <a href="/preturi" className="text-aqua underline hover:no-underline">pagina noastra de preturi</a>. Pentru alte intrebari despre servicii si preturi, poti consulta si <a href="/faq" className="text-aqua underline hover:no-underline">intrebarile frecvente</a>.
