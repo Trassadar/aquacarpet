@@ -92,7 +92,7 @@ export default function Comanda() {
         website: formData.website // Honeypot
       };
 
-      const response = await fetch('/api/public/aquacarpet-order', {
+      const response = await fetch('/api/submit-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
