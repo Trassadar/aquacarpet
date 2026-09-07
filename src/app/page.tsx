@@ -274,10 +274,10 @@ export default function Home() {
               Gata pentru covoare impecabile?
             </h2>
             <p className="text-xl mb-8 text-light-aqua">
-              Comanda acum si primesti 10% reducere la prima spalare!
+              Comanda online pe site si primesti 10% reducere la spalare!
             </p>
             <a 
-              href="#comanda" 
+              href="/comanda" 
               className="bg-white text-navy font-semibold py-4 px-8 rounded-lg hover:bg-light-aqua transition-colors inline-block"
             >
               Comanda Acum
