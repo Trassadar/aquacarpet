@@ -286,11 +286,11 @@ export async function POST(request: NextRequest) {
     };
 
     // Salvare in Firestore
-    const ordersCollection = getOrdersCollection();
+    const ordersCollection = getOrdersCollection(tenantId);
     await ordersCollection.doc(orderId).set(orderData);
 
     if (process.env.NODE_ENV !== 'production') {
-      console.log(`Comanda salvata: ${orderId} in orders`);
+      console.log(`Comanda salvata: ${orderId} in tenants/${tenantId}/orders`);
     }
 
     return NextResponse.json(

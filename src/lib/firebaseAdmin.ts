@@ -69,8 +69,8 @@ export function getAdminStorage() {
 }
 
 // Functie helper pentru a obtine colectia de comenzi pentru un tenant
-export function getOrdersCollection() {
-  return getDb().collection('orders');
+export function getOrdersCollection(tenantId: string) {
+  return getDb().collection('tenants').doc(tenantId).collection('orders');
 }
 
 // Functie helper pentru a obtine colectia de users
