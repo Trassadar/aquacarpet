@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
+// Tenant Firestore confirmat pentru AquaCarpet (folosit doar daca env var lipseste)
+const AQUACARPET_FALLBACK_TENANT_ID = "Oo9hia1tHwYDLzCsoZVV1Z0GKzz1";
+
 type SubmitBody = {
   ownerUid?: string;
   tenantId?: string;
@@ -74,7 +77,7 @@ export async function POST(request: NextRequest) {
       website: body.website || "",
       ttsMs: body.ttsMs || 0,
       ownerUid: (body.ownerUid || process.env.CARPETAN_OWNER_UID || process.env.AQUACARPET_OWNER_UID || "").trim(),
-      tenantId: (body.tenantId || process.env.CARPETAN_TENANT_ID || process.env.AQUACARPET_TENANT_ID || "").trim(),
+      tenantId: (body.tenantId || process.env.CARPETAN_TENANT_ID || process.env.AQUACARPET_TENANT_ID || AQUACARPET_FALLBACK_TENANT_ID).trim(),
       source: (body.source || "aquacarpet-web").toString().trim() || "aquacarpet-web",
     };
 
