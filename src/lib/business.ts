@@ -44,9 +44,9 @@ export const BUSINESS = {
   minOrder: MIN_ORDER_SQM * PRICE_PER_SQM,
   currency: 'RON',
   delivery: '24–48 de ore',
-  areaServed: 'Brașov și zonele limitrofe',
+  areaServed: 'Brașov, Codlea, Sânpetru, Hărman, Săcele, Tărlungeni și Feldioara',
   /** Localitățile disponibile în formularul de comandă. */
-  localities: ['Brașov', 'Săcele', 'Predeal', 'Râșnov'],
+  localities: ['Brașov', 'Codlea', 'Sânpetru', 'Hărman', 'Săcele', 'Tărlungeni', 'Feldioara'],
   /** Reducere afișată pe site pentru comenzile online. */
   onlineDiscount: '10%',
 } as const;

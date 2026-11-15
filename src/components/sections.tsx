@@ -280,12 +280,12 @@ export function Coverage() {
           <div data-reveal="right" className="relative overflow-hidden rounded-3xl bg-bubbles p-8 text-white min-h-72" aria-hidden="true">
             <span className="bubble h-40 w-40 -right-8 -top-8 animate-float" />
             <span className="bubble h-20 w-20 left-10 bottom-10 animate-float [animation-delay:-2s]" />
-            <div className="relative grid grid-cols-2 gap-4">
+            <div className="relative grid grid-cols-2 gap-3 pb-4">
               {BUSINESS.localities.map((l, i) => (
-                <div key={l} className={`rounded-2xl bg-white/10 p-5 ring-1 ring-white/20 backdrop-blur ${i % 2 ? 'translate-y-6' : ''}`}>
-                  <TruckIcon className="icon-drive h-6 w-6 text-aqua-300" />
-                  <p className="mt-3 text-lg font-bold">{l}</p>
-                  <p className="text-sm text-white/80">Transport gratuit</p>
+                <div key={l} className={`rounded-2xl bg-white/10 p-4 ring-1 ring-white/20 backdrop-blur ${i % 2 ? 'translate-y-4' : ''}`}>
+                  <TruckIcon className="icon-drive h-5 w-5 text-aqua-300" />
+                  <p className="mt-2 font-bold">{l}</p>
+                  <p className="text-xs text-white/80">Transport gratuit</p>
                 </div>
               ))}
             </div>

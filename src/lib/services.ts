@@ -108,12 +108,12 @@ export const SERVICES: Service[] = [
     icon: '🚚',
     metaTitle: 'Ridicare și livrare covoare gratuită în Brașov',
     metaDescription:
-      'Ridicăm gratuit covoarele de acasă în Brașov și zonele limitrofe și le aducem înapoi curate în 24–48 de ore. Comandă la 0757 219 695 sau online.',
+      `Ridicare și livrare gratuită a covoarelor în ${BUSINESS.areaServed}. Gata în 24–48 de ore. Sună la ${BUSINESS.phoneDisplay}.`,
     h1: 'Ridicare și livrare gratuită a covoarelor în Brașov',
     intro:
-      'Nu trebuie să cari covoare grele până la mașină. Venim la adresa ta din Brașov sau din zonele limitrofe, ridicăm covoarele și le aducem înapoi curate, gata de folosit.',
+      `Nu trebuie să cari covoare grele până la mașină. Venim la adresa ta din ${BUSINESS.areaServed}, ridicăm covoarele și le aducem înapoi curate, gata de folosit.`,
     summary:
-      'Transport gratuit la domiciliu în Brașov și zonele limitrofe, cu ambalare profesională la returnare.',
+      `Transport gratuit la domiciliu în ${BUSINESS.areaServed}, cu ambalare profesională la returnare.`,
     bullets: [
       'Transport gratuit dus-întors',
       'Program flexibil, stabilit cu tine',
@@ -131,7 +131,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Cât costă transportul',
         paragraphs: [
-          `Ridicarea și livrarea sunt gratuite în Brașov și zonele limitrofe. Plătești doar spălarea: ${BUSINESS.pricePerSqm} RON/mp, comanda fiind de ${MIN_ORDER_LABEL}.`,
+          `Ridicarea și livrarea sunt gratuite în ${BUSINESS.areaServed}. Plătești doar spălarea: ${BUSINESS.pricePerSqm} RON/mp, comanda fiind de ${MIN_ORDER_LABEL}.`,
           'Comandă online pe site și primești 10% reducere la spălare.',
         ],
       },

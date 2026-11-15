@@ -61,7 +61,7 @@ export default function Comanda() {
     }
 
     if (!formData.numar.trim()) {
-      newErrors.numar = 'Numărul este obligatoriu';
+      newErrors.numar = 'Numarul este obligatoriu';
     }
 
     if (!formData.gdpr) {

@@ -13,7 +13,7 @@ export const FAQS: FaqItem[] = [
   },
   {
     q: 'Faceți transport la domiciliu?',
-    a: 'Da, ridicarea și livrarea sunt gratuite în Brașov și zonele limitrofe. Echipa noastră vine la adresa indicată, ambalează covoarele și le returnează curate.',
+    a: `Da, ridicarea și livrarea sunt gratuite în ${BUSINESS.areaServed}. Echipa noastră vine la adresa indicată, ambalează covoarele și le returnează curate.`,
   },
   {
     q: 'Cum se calculează prețul?',
