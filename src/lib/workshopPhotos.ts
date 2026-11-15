@@ -1,4 +1,4 @@
-/** Fotografii de proces pentru galerie (generate, nu din atelierul real). */
+/** Fotografii de proces pentru galerie. Uscătoria este o fotografie reală din atelier. */
 export type WorkshopPhoto = {
   src: string;
   alt: string;
@@ -8,27 +8,27 @@ export type WorkshopPhoto = {
 export const WORKSHOP_PHOTOS = {
   wash: {
     src: '/images/spalare-presiune.webp',
-    alt: 'Angajat care spală cu aparat de presiune un covor oriental pe pardoseala umedă a spălătoriei de covoare, cu spumă albă pe fibre',
-    caption: 'Spălare cu presiune și spumă',
+    alt: 'Mașină automată industrială de spălat covoare în atelierul AquaCarpet: covorul trece întins pe bandă, prin perii rotative și clătire',
+    caption: 'Spălare automată industrială',
   },
   spin: {
     src: '/images/centrifuga.webp',
-    alt: 'Covor ud scos din centrifuga industrială a spălătoriei, cu apa scurgându-se pe pardoseala de beton',
+    alt: 'Centrifugă industrială orizontală pentru covoare, cu tamburul deschis, în care este introdus un covor ud rulat, în atelierul AquaCarpet',
     caption: 'Stoarcere în centrifugă',
   },
   dry: {
-    src: '/images/uscare.webp',
-    alt: 'Covoare proaspăt spălate, atârnate la uscat pe bare metalice într-o cameră de uscare cu aerisire profesională',
-    caption: 'Uscare controlată',
+    src: '/images/uscatorie-aquacarpet.webp',
+    alt: 'Uscătoria AquaCarpet din Brașov: covoare proaspăt spălate, atârnate pe rânduri de bare metalice într-o hală cu panouri sandwich și iluminare LED',
+    caption: 'Uscătoria AquaCarpet',
   },
   wrap: {
     src: '/images/ambalare.webp',
-    alt: 'Covor curat, rulat și ambalat în folie de protecție, pregătit pentru livrare la domiciliu',
+    alt: 'Covor curat, rulat și ambalat în folie de protecție pe masa de lucru din atelier, pregătit pentru livrare la domiciliu',
     caption: 'Ambalare pentru livrare',
   },
   deliver: {
     src: '/images/livrare-domiciliu.webp',
-    alt: 'Livrare la ușa casei: un covor curat, rulat și ambalat, dus de la duba de transport până la intrarea locuinței',
+    alt: 'Livrare la un bloc din Brașov: un covor curat, rulat și ambalat, dus de la duba de transport până la intrarea scării',
     caption: 'Livrare gratuită la domiciliu',
   },
   before: {
