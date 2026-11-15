@@ -1,4 +1,4 @@
-/** Fotografii de proces pentru galerie. Uscătoria este o fotografie reală din atelier. */
+/** Fotografii de proces pentru galerie. */
 export type WorkshopPhoto = {
   src: string;
   alt: string;
@@ -17,9 +17,9 @@ export const WORKSHOP_PHOTOS = {
     caption: 'Stoarcere în centrifugă',
   },
   dry: {
-    src: '/images/uscatorie-aquacarpet.webp',
-    alt: 'Uscătoria AquaCarpet din Brașov: covoare proaspăt spălate, atârnate pe rânduri de bare metalice într-o hală cu panouri sandwich și iluminare LED',
-    caption: 'Uscătoria AquaCarpet',
+    src: '/images/uscare.webp',
+    alt: 'Cameră închisă de uscare a covoarelor: câteva covoare proaspăt spălate, atârnate pe bare metalice, la temperatură controlată',
+    caption: 'Cameră de uscare',
   },
   wrap: {
     src: '/images/ambalare.webp',
