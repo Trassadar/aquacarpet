@@ -46,9 +46,9 @@ export default function Servicii() {
           <Container>
             <SectionHeading eyebrow="Avantaje" title="De ce să ne alegi?" />
             <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {beneficii.map(({ icon: Icon, titlu, descriere }) => (
-                <li key={titlu} className="reveal flex gap-4 rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200">
-                  <span className="grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-white text-aqua-700 ring-1 ring-slate-200">
+              {beneficii.map(({ icon: Icon, titlu, descriere }, i) => (
+                <li key={titlu} data-reveal style={{ '--i': i % 3 } as React.CSSProperties} className="flex gap-4 rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200">
+                  <span className="icon-pop grid h-12 w-12 flex-shrink-0 place-items-center rounded-2xl bg-white text-aqua-700 ring-1 ring-slate-200">
                     <Icon className="h-6 w-6" />
                   </span>
                   <div>

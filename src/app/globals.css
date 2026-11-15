@@ -23,6 +23,7 @@
 
   --animate-float: float 7s ease-in-out infinite;
   --animate-fade-up: fade-up 0.7s ease-out both;
+  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @keyframes float {
@@ -38,6 +39,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Animațiile cu translateX nu trebuie să creeze scroll orizontal pe mobil */
+html, body { overflow-x: clip; }
 
 body {
   background: #ffffff;
@@ -69,16 +73,145 @@ body {
   pointer-events: none;
 }
 
-/* Animații la scroll (fără JavaScript), doar unde browserul le suportă */
-@supports (animation-timeline: view()) {
-  .reveal {
-    animation: fade-up linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 35%;
-  }
+/* ============ ANIMAȚII ============ */
+/* Doar transform/opacity (rulează pe GPU, fără CLS). */
+
+/* --- Scroll reveal (IntersectionObserver în ScrollReveal.tsx) --- */
+[data-reveal] { --i: 0; }
+.reveal-pending { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.98); }
+[data-reveal="left"].reveal-pending { transform: translate3d(-32px, 0, 0); }
+[data-reveal="right"].reveal-pending { transform: translate3d(32px, 0, 0); }
+[data-reveal="zoom"].reveal-pending { transform: scale(0.9); }
+.reveal-in {
+  transition: opacity 0.7s var(--ease-spring), transform 0.7s var(--ease-spring);
+  transition-delay: calc(var(--i) * 90ms);
 }
 
+/* Iconițe: „pop” când cardul intră în ecran */
+.reveal-in .icon-pop { animation: icon-pop 0.6s var(--ease-spring) both; animation-delay: calc(var(--i) * 90ms + 200ms); }
+@keyframes icon-pop {
+  0% { transform: scale(0.4) rotate(-12deg); opacity: 0; }
+  60% { transform: scale(1.12) rotate(4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); }
+}
+
+/* Micro-animații continue, foarte discrete */
+.icon-drive { animation: drive 3.2s ease-in-out infinite; }
+@keyframes drive { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+.icon-sway { transform-origin: bottom left; animation: sway 4s ease-in-out infinite; }
+@keyframes sway { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-8deg); } }
+.icon-tick { animation: tick 6s steps(1) infinite; }
+@keyframes tick { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(8deg); } }
+.icon-beat { animation: beat 2.8s ease-in-out infinite; }
+@keyframes beat { 0%, 100% { transform: scale(1); } 10% { transform: scale(1.12); } 20% { transform: scale(1); } }
+.icon-drip { animation: drip 2.6s ease-in-out infinite; }
+@keyframes drip { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2px) scaleY(1.06); } }
+
+/* --- Pașii „Cum funcționează”: linie de progres + intrare în secvență --- */
+.steps-line { transform: scaleX(0); transform-origin: left; transition: transform 1.6s var(--ease-spring) 0.2s; }
+@media (max-width: 1023px) {
+  .steps-line { transform: scaleY(0); transform-origin: top; transition-duration: 1.8s; }
+}
+.is-visible > .steps-line { transform: none; }
+
+/* --- Hero: bule care urcă + strălucire pe gradient --- */
+.foam { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.foam span {
+  position: absolute;
+  bottom: -60px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.55), rgb(0 174 239 / 0.3) 45%, rgb(0 174 239 / 0.05) 70%);
+  border: 1px solid rgb(255 255 255 / 0.25);
+  animation: rise var(--dur, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+}
+@keyframes rise {
+  0% { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+  10% { opacity: 0.9; }
+  50% { transform: translate3d(var(--sway, 20px), -45vh, 0) scale(1); }
+  90% { opacity: 0.7; }
+  100% { transform: translate3d(calc(var(--sway, 20px) * -1), -95vh, 0) scale(1.1); opacity: 0; }
+}
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgb(0 174 239 / 0.18) 45%, rgb(255 255 255 / 0.08) 50%, transparent 65%);
+  transform: translateX(-100%);
+  animation: shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 55%, 100% { transform: translateX(100%); } }
+
+/* Text cu reflex animat (accent din titlu) */
+.text-shine {
+  background: linear-gradient(90deg, #6fd2f8 0%, #d6f2fe 25%, #2ec0f4 50%, #6fd2f8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 5s linear infinite;
+}
+@keyframes shine { to { background-position: -200% center; } }
+
+/* Intrare la încărcare (elemente din hero, fără titlul H1 – LCP) */
+.load-in { animation: fade-up 0.8s var(--ease-spring) both; animation-delay: var(--delay, 0s); }
+
+/* --- CTA: puls de atenție (inel care se extinde) --- */
+.cta-pulse { position: relative; isolation: isolate; }
+.cta-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 currentColor;
+  background: inherit;
+  z-index: -1;
+  opacity: 0;
+  animation: pulse-ring 3.2s var(--ease-spring) infinite;
+  animation-delay: var(--delay, 1.5s);
+}
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.55; }
+  45% { transform: scale(1.18, 1.35); opacity: 0; }
+  100% { transform: scale(1.18, 1.35); opacity: 0; }
+}
+.nudge { animation: nudge 4s ease-in-out infinite; animation-delay: var(--delay, 2s); }
+@keyframes nudge {
+  0%, 82%, 100% { transform: translateY(0); }
+  86% { transform: translateY(-3px); }
+  90% { transform: translateY(0); }
+  94% { transform: translateY(-2px); }
+}
+.arrow-nudge { animation: arrow 1.8s ease-in-out infinite; }
+@keyframes arrow { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+
+/* --- Feedback la atingere (mobil) --- */
+a, button, summary { -webkit-tap-highlight-color: transparent; }
+.tap { transition: transform 0.15s var(--ease-spring), filter 0.15s, background-color 0.2s, box-shadow 0.2s; }
+.tap:active { transform: scale(0.96); filter: brightness(0.95); }
+
+/* --- Calculator: rezultat animat --- */
+.bump { animation: bump 0.45s var(--ease-spring); }
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+
+/* --- FAQ: deschidere lină --- */
+details > summary::-webkit-details-marker { display: none; }
+@supports (interpolate-size: allow-keywords) {
+  details { interpolate-size: allow-keywords; }
+  details::details-content {
+    height: 0;
+    overflow: clip;
+    transition: height 0.35s var(--ease-spring), content-visibility 0.35s allow-discrete;
+  }
+  details[open]::details-content { height: auto; }
+}
+details[open] .faq-answer { animation: fade-up 0.4s var(--ease-spring) both; }
+
 @media (prefers-reduced-motion: reduce) {
+  .reveal-pending { opacity: 1 !important; transform: none !important; }
+  .foam, .shimmer { display: none; }
   *, *::before, *::after {
     animation: none !important;
     transition: none !important;
@@ -86,4 +219,5 @@ body {
   }
 }
 
-details > summary::-webkit-details-marker { display: none; }
+
+

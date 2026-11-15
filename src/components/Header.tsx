@@ -61,7 +61,7 @@ export default function Header() {
             </a>
             <Link
               href="/comanda"
-              className="rounded-full bg-aqua-500 px-5 py-2.5 font-semibold text-navy-950 shadow-sm shadow-aqua-500/30 transition hover:bg-aqua-400 hover:-translate-y-0.5"
+              className="tap rounded-full bg-aqua-500 px-5 py-2.5 font-semibold text-navy-950 shadow-sm shadow-aqua-500/30 hover:bg-aqua-400"
             >
               Comandă ridicare
             </Link>
@@ -70,15 +70,15 @@ export default function Header() {
           <div className="flex items-center gap-2 md:hidden">
             <a
               href={BUSINESS.phoneHref}
-              className="grid h-11 w-11 place-items-center rounded-full bg-aqua-50 text-aqua-700"
+              className="tap grid h-11 w-11 place-items-center rounded-full bg-aqua-50 text-aqua-700"
               aria-label={`Sună la ${BUSINESS.phoneDisplay}`}
             >
-              <PhoneIcon className="h-5 w-5" />
+              <PhoneIcon className="icon-tick h-5 w-5" />
             </a>
             <button
               type="button"
               onClick={() => setOpen(!open)}
-              className="grid h-11 w-11 place-items-center rounded-full text-navy-950 hover:bg-slate-100"
+              className="tap grid h-11 w-11 place-items-center rounded-full text-navy-950 hover:bg-slate-100"
               aria-label={open ? 'Închide meniul' : 'Deschide meniul'}
               aria-expanded={open}
               aria-controls="meniu-mobil"
@@ -90,7 +90,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen(!open)}
-            className="hidden md:grid lg:hidden h-11 w-11 place-items-center rounded-full text-navy-950 hover:bg-slate-100"
+            className="tap hidden md:grid lg:hidden h-11 w-11 place-items-center rounded-full text-navy-950 hover:bg-slate-100"
             aria-label={open ? 'Închide meniul' : 'Deschide meniul'}
             aria-expanded={open}
             aria-controls="meniu-mobil"
@@ -102,13 +102,13 @@ export default function Header() {
         {open && (
           <div id="meniu-mobil" className="lg:hidden border-t border-slate-200 py-3 animate-fade-up">
             <ul className="space-y-1">
-              {[{ href: '/', label: 'Acasă' }, ...navItems, { href: '/comanda', label: 'Comandă online' }].map((item) => (
-                <li key={item.href}>
+              {[{ href: '/', label: 'Acasă' }, ...navItems, { href: '/comanda', label: 'Comandă online' }].map((item, i) => (
+                <li key={item.href} className="animate-fade-up" style={{ animationDelay: `${i * 50}ms` }}>
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
                     aria-current={pathname === item.href ? 'page' : undefined}
-                    className="block rounded-xl px-4 py-3 text-base font-medium text-navy-950 hover:bg-aqua-50"
+                    className="tap block rounded-xl px-4 py-3 text-base font-medium text-navy-950 hover:bg-aqua-50 active:bg-aqua-50"
                   >
                     {item.label}
                   </Link>

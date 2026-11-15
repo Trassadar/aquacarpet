@@ -6,7 +6,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: `Contact Spălătorie Covoare Brașov – ${BUSINESS.phoneDisplay}`,
-  description: `Contactează AquaCarpet, spălătorie de covoare în Brașov (Șoseaua Cristianului). Telefon ${BUSINESS.phoneDisplay}, program L–V 08:00–18:00, S 09:00–13:00. Comandă online sau pe WhatsApp.`,
+  description: `Contactează AquaCarpet, spălătorie de covoare în Brașov (Șoseaua Cristianului). Telefon ${BUSINESS.phoneDisplay}, program ${BUSINESS.hoursShort}. Comandă online sau pe WhatsApp.`,
   path: '/contact',
 });
 

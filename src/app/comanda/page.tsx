@@ -245,7 +245,7 @@ export default function Comanda() {
                   aria-hidden="true"
                 />
 
-                <fieldset>
+                <fieldset data-reveal>
                   <legend className="flex items-center gap-3 text-lg font-bold text-navy-950">
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-950 text-sm text-white" aria-hidden="true">1</span>
                     Date de contact
@@ -264,7 +264,7 @@ export default function Comanda() {
                   </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset data-reveal>
                   <legend className="flex items-center gap-3 text-lg font-bold text-navy-950">
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-950 text-sm text-white" aria-hidden="true">2</span>
                     Adresa de ridicare
@@ -305,7 +305,7 @@ export default function Comanda() {
                   </div>
                 </fieldset>
 
-                <fieldset>
+                <fieldset data-reveal>
                   <legend className="flex items-center gap-3 text-lg font-bold text-navy-950">
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-950 text-sm text-white" aria-hidden="true">3</span>
                     Detalii comandă
@@ -362,7 +362,7 @@ export default function Comanda() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex h-14 w-full items-center justify-center rounded-2xl bg-aqua-500 text-lg font-bold text-navy-950 shadow-lg shadow-aqua-500/30 transition hover:bg-aqua-400 disabled:bg-slate-300 disabled:shadow-none"
+                  className="tap flex h-14 w-full items-center justify-center rounded-2xl bg-aqua-500 text-lg font-bold text-navy-950 shadow-lg shadow-aqua-500/30 transition hover:bg-aqua-400 disabled:bg-slate-300 disabled:shadow-none"
                 >
                   {isSubmitting ? 'Se trimite…' : 'Trimite comanda'}
                 </button>

@@ -72,11 +72,11 @@ export default function Preturi() {
           <Container>
             <SectionHeading eyebrow="Exemple" title="Exemple de calcul" lead="Vezi cum se calculează prețul pentru câteva covoare obișnuite." />
             <ul className="grid gap-5 md:grid-cols-2">
-              {exemple.map((e) => {
+              {exemple.map((e, i) => {
                 const raw = e.sqm * BUSINESS.pricePerSqm;
                 const total = Math.max(raw, BUSINESS.minOrder);
                 return (
-                  <li key={e.descriere} className="reveal rounded-3xl bg-white p-6 ring-1 ring-slate-200">
+                  <li key={e.descriere} data-reveal style={{ '--i': i } as React.CSSProperties} className="rounded-3xl bg-white p-6 ring-1 ring-slate-200">
                     <h3 className="font-bold text-navy-950">{e.descriere}</h3>
                     <div className="mt-4 flex items-end justify-between gap-4">
                       <p className="text-sm text-ink-soft">

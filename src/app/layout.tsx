@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import StickyCta from "@/components/StickyCta";
+import ScrollReveal from "@/components/ScrollReveal";
 import JsonLd from "@/components/JsonLd";
 import { BUSINESS, MIN_ORDER_LABEL, SITE_URL, localBusinessJsonLd } from "@/lib/business";
 
@@ -51,6 +52,7 @@ export default function RootLayout({
         <JsonLd data={localBusinessJsonLd()} />
         {children}
         <StickyCta />
+        <ScrollReveal />
       </body>
     </html>
   );

@@ -5,7 +5,7 @@ export type FaqItem = { q: string; a: string };
 export const FAQS: FaqItem[] = [
   {
     q: 'Care este programul de funcționare?',
-    a: 'Suntem deschiși de luni până vineri, între orele 08:00 și 18:00, iar sâmbătă între 09:00 și 13:00. Comenzile se pot face online și în afara programului, iar noi te contactăm pentru confirmare.',
+    a: 'Suntem deschiși de luni până vineri, între orele 09:00 și 17:00. Sâmbăta și duminica suntem închiși. Comenzile se pot face online și în afara programului, iar noi te contactăm pentru confirmare.',
   },
   {
     q: 'Cât timp durează spălarea covoarelor?',

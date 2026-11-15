@@ -32,10 +32,12 @@ export const BUSINESS = {
   addressLine: 'Șoseaua Cristianului, Brașov',
   mapsQuery: 'Șoseaua Cristianului, Brașov, România',
   hours: [
-    { label: 'Luni – Vineri', value: '08:00 – 18:00' },
-    { label: 'Sâmbătă', value: '09:00 – 13:00' },
+    { label: 'Luni – Vineri', value: '09:00 – 17:00' },
+    { label: 'Sâmbătă', value: 'Închis' },
     { label: 'Duminică', value: 'Închis' },
   ],
+  /** Program pe scurt, pentru texte. */
+  hoursShort: 'L–V 09:00–17:00 · sâmbătă și duminică închis',
   pricePerSqm: PRICE_PER_SQM,
   /** Comanda minimă: 7 mp; valoarea în lei se calculează din preț (7 × 14 = 98). */
   minOrderSqm: MIN_ORDER_SQM,
@@ -100,15 +102,9 @@ export function localBusinessJsonLd() {
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '08:00',
-        closes: '18:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Saturday',
         opens: '09:00',
-        closes: '13:00',
-      },
+        closes: '17:00',
+      }
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',

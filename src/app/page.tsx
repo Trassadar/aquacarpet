@@ -2,6 +2,8 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PriceCalculator from '@/components/PriceCalculator';
+import CountUp from '@/components/CountUp';
+import HeroFoam from '@/components/HeroFoam';
 import {
   Container,
   ContactBlock,
@@ -39,20 +41,21 @@ export default function Home() {
           <span className="bubble h-72 w-72 -right-20 -top-24 animate-float" aria-hidden="true" />
           <span className="bubble h-28 w-28 left-[45%] top-16 animate-float [animation-delay:-2s]" aria-hidden="true" />
           <span className="bubble h-16 w-16 left-8 bottom-24 animate-float [animation-delay:-5s]" aria-hidden="true" />
+          <HeroFoam />
           <Container className="relative grid items-center gap-10 pt-10 pb-24 md:pt-16 md:pb-32 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
               <Eyebrow light>Spălătorie covoare · Brașov</Eyebrow>
               <h1 className="mt-5 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight">
-                Spălătorie covoare Brașov cu <span className="text-aqua-300">ridicare și livrare gratuită</span>
+                Spălătorie covoare Brașov cu <span className="text-shine">ridicare și livrare gratuită</span>
               </h1>
-              <p className="mt-6 max-w-xl text-lg md:text-xl text-white/90">
+              <p className="load-in mt-6 max-w-xl text-lg md:text-xl text-white/90" style={{ '--delay': '0.1s' } as React.CSSProperties}>
                 Ridicăm covoarele de acasă, le spălăm profesional, le uscăm controlat și ți le aducem înapoi curate în
                 24–48 de ore.
               </p>
 
-              <div className="mt-7 flex flex-wrap items-end gap-x-6 gap-y-3">
+              <div className="load-in mt-7 flex flex-wrap items-end gap-x-6 gap-y-3" style={{ '--delay': '0.25s' } as React.CSSProperties}>
                 <p className="flex items-baseline gap-2">
-                  <span className="text-6xl md:text-7xl font-black text-white">{BUSINESS.pricePerSqm}</span>
+                  <CountUp to={BUSINESS.pricePerSqm} className="text-6xl md:text-7xl font-black text-white" />
                   <span className="text-2xl font-bold text-aqua-300">lei/mp</span>
                 </p>
                 <ul className="pb-2 text-sm text-white/85 space-y-1">
@@ -61,13 +64,13 @@ export default function Home() {
                 </ul>
               </div>
 
-              <CtaButtons className="mt-8" />
+              <CtaButtons className="load-in mt-8" pulse />
               <p className="mt-4 text-sm text-white/80">
-                Program: L–V 08:00–18:00 · S 09:00–13:00 · Comenzile online sunt preluate oricând.
+                Program: {BUSINESS.hoursShort}. Comenzile online sunt preluate oricând.
               </p>
             </div>
 
-            <div className="lg:pl-6">
+            <div className="load-in lg:pl-6" style={{ '--delay': '0.35s' } as React.CSSProperties}>
               <PriceCalculator compact />
             </div>
           </Container>
@@ -103,7 +106,7 @@ export default function Home() {
         <section className="py-16 md:py-24">
           <Container>
             <div className="grid items-center gap-10 lg:grid-cols-2">
-              <div>
+              <div data-reveal="left">
                 <Eyebrow>Preț transparent</Eyebrow>
                 <h2 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-navy-950">
                   Preț spălare covoare Brașov: {BUSINESS.pricePerSqm} RON/mp, totul inclus
@@ -117,7 +120,7 @@ export default function Home() {
                 </div>
                 <Link
                   href="/preturi"
-                  className="mt-8 inline-flex h-12 items-center rounded-xl bg-navy-950 px-6 font-semibold text-white hover:bg-navy-800"
+                  className="tap mt-8 inline-flex h-12 items-center rounded-xl bg-navy-950 px-6 font-semibold text-white hover:bg-navy-800"
                 >
                   Exemple de calcul și detalii
                 </Link>
@@ -128,11 +131,11 @@ export default function Home() {
                   { size: '2 × 2,5 m', sqm: 5 },
                   { size: '3 × 4 m', sqm: 12 },
                   { size: '2,5 × 3,5 m', sqm: 8.75 },
-                ].map((c) => {
+                ].map((c, i) => {
                   const raw = c.sqm * BUSINESS.pricePerSqm;
                   const total = Math.max(raw, BUSINESS.minOrder);
                   return (
-                    <div key={c.size} className="reveal rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200">
+                    <div key={c.size} data-reveal="zoom" style={{ '--i': i } as React.CSSProperties} className="rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg">
                       <p className="text-sm font-medium text-ink-soft">Covor {c.size}</p>
                       <p className="mt-1 text-sm text-ink-soft">{c.sqm.toLocaleString('ro-RO')} mp</p>
                       <p className="mt-3 text-3xl font-extrabold text-navy-950">

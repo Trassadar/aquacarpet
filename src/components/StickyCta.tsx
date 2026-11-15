@@ -10,17 +10,18 @@ export default function StickyCta() {
         <div className="grid grid-cols-[auto_auto_1fr] gap-2">
           <a
             href={BUSINESS.phoneHref}
-            className="flex h-12 items-center justify-center gap-2 rounded-xl border-2 border-navy-950 px-4 font-semibold text-navy-950"
+            className="tap flex h-12 items-center justify-center whitespace-nowrap gap-2 rounded-xl border-2 border-navy-950 px-4 font-semibold text-navy-950"
             aria-label={`Sună la ${BUSINESS.phoneDisplay}`}
           >
-            <PhoneIcon className="h-5 w-5" />
+            <PhoneIcon className="icon-tick h-5 w-5" />
             Sună
           </a>
           <a
             href={BUSINESS.whatsappOrderHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-12 items-center justify-center gap-2 rounded-xl bg-whatsapp px-4 font-semibold text-navy-950"
+            className="tap cta-pulse nudge flex h-12 items-center justify-center whitespace-nowrap gap-2 rounded-xl bg-whatsapp px-4 font-semibold text-navy-950"
+            style={{ '--delay': '2s' } as React.CSSProperties}
             aria-label="Scrie-ne pe WhatsApp"
           >
             <WhatsAppIcon className="h-5 w-5" />
@@ -28,7 +29,8 @@ export default function StickyCta() {
           </a>
           <Link
             href="/comanda"
-            className="flex h-12 items-center justify-center rounded-xl bg-aqua-500 px-3 text-center font-bold text-navy-950"
+            className="tap cta-pulse flex h-12 items-center justify-center whitespace-nowrap gap-1 rounded-xl bg-aqua-500 px-3 text-center font-bold text-navy-950"
+            style={{ '--delay': '3.6s' } as React.CSSProperties}
           >
             Comandă
           </Link>
@@ -42,7 +44,7 @@ export default function StickyCta() {
           rel="noopener noreferrer"
           aria-label="Scrie-ne pe WhatsApp"
           title="WhatsApp"
-          className="grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-navy-950 shadow-lg transition hover:scale-110"
+          className="tap cta-pulse grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-navy-950 shadow-lg transition hover:scale-110"
         >
           <WhatsAppIcon className="h-7 w-7" />
         </a>
