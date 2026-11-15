@@ -161,7 +161,7 @@ export function TrustBar() {
 }
 
 const STEPS = [
-  { icon: PhoneIcon, title: 'Comanzi', text: 'Telefonic, pe WhatsApp sau prin formularul online. Alegi ziua și intervalul orar.' },
+  { icon: PhoneIcon, title: 'Comanzi', text: 'Telefonic, pe WhatsApp sau prin formularul online. Te sunăm și stabilim ziua ridicării.' },
   { icon: TruckIcon, title: 'Ridicăm gratuit', text: 'Venim la adresa ta și preluăm covoarele. Nu cari nimic.' },
   { icon: DropletIcon, title: 'Spălăm și uscăm', text: 'Spălare profesională, igienizare și uscare la temperatură controlată.' },
   { icon: SparklesIcon, title: 'Livrăm în 24–48 h', text: 'Îți aducem covoarele curate, verificate și ambalate, acasă.' },

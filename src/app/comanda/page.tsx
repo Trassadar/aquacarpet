@@ -185,7 +185,7 @@ export default function Comanda() {
                 <ul className="mt-3 space-y-2 text-ink">
                   {[
                     'Te sunăm pentru confirmarea comenzii',
-                    'Stabilim împreună data și ora potrivite pentru ridicare',
+                    'Stabilim împreună ziua ridicării',
                     'Echipa noastră vine la adresa indicată',
                     'Covoarele sunt returnate curate în 24–48 de ore',
                   ].map((t) => (

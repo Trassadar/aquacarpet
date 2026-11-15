@@ -124,7 +124,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Cum funcționează',
         paragraphs: [
-          'Ne suni la 0757 219 695, ne scrii pe WhatsApp sau completezi formularul de comandă online. Stabilim împreună ziua și intervalul orar potrivit pentru ridicare.',
+          'Ne suni la 0757 219 695, ne scrii pe WhatsApp sau completezi formularul de comandă online. Te sunăm și stabilim împreună ziua ridicării.',
           'Echipa noastră vine la adresa indicată și preia covoarele. După spălare și uscare, le aducem înapoi tot la tine acasă, ambalate.',
         ],
       },
