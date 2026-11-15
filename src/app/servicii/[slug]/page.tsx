@@ -1,8 +1,11 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import JsonLd from '@/components/JsonLd';
+import PriceCalculator from '@/components/PriceCalculator';
+import { Container, CtaBanner, CtaButtons, PageHero } from '@/components/sections';
+import { ArrowRightIcon, CheckIcon } from '@/components/Icons';
 import { BUSINESS, BUSINESS_ID } from '@/lib/business';
 import { SERVICES, getService } from '@/lib/services';
 import { absoluteUrl, pageMetadata } from '@/lib/seo';
@@ -34,78 +37,76 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     url: absoluteUrl(path),
     serviceType: s.name,
     provider: { '@id': BUSINESS_ID },
-    areaServed: { '@type': 'City', name: 'Brașov' },
+    areaServed: BUSINESS.localities.map((name) => ({ '@type': 'City', name })),
   };
   const others = SERVICES.filter((o) => o.slug !== s.slug);
 
   return (
-    <div className="min-h-screen">
+    <>
       <JsonLd data={serviceJsonLd} />
       <Header />
-
       <main>
-        <section className="hero-gradient text-white pt-24 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <Breadcrumbs items={[{ name: 'Servicii', path: '/servicii' }, { name: s.shortName, path }]} />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{s.h1}</h1>
-            <p className="text-xl mb-8 text-white max-w-3xl mx-auto">{s.intro}</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={BUSINESS.phoneHref} className="bg-white text-navy font-semibold py-3 px-8 rounded-lg hover:bg-light-aqua transition-colors">
-                📞 Sună la {BUSINESS.phoneDisplay}
-              </a>
-              <a href="/comanda" className="bg-green-700 hover:bg-green-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
-                🖥️ Comandă online
-              </a>
-            </div>
-          </div>
-        </section>
+        <PageHero crumbs={[{ name: 'Servicii', path: '/servicii' }, { name: s.shortName, path }]} title={s.h1} lead={s.intro}>
+          <CtaButtons className="mt-8" />
+        </PageHero>
 
-        <section className="py-16 bg-card">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">Ce include serviciul</h2>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-12">
-              {s.bullets.map((b) => (
-                <li key={b} className="flex items-start text-secondary">
-                  <span className="text-aqua mr-3" aria-hidden="true">✓</span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            {s.sections.map((sec) => (
-              <div key={sec.heading} className="mb-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">{sec.heading}</h2>
-                {sec.paragraphs.map((p) => (
-                  <p key={p} className="text-secondary text-lg mb-4">{p}</p>
-                ))}
+        <section className="py-14 md:py-20">
+          <Container className="grid gap-12 lg:grid-cols-[1fr_380px]">
+            <article>
+              <div className="rounded-3xl bg-aqua-50 p-6 md:p-8">
+                <h2 className="text-2xl font-extrabold text-navy-950">Ce include serviciul</h2>
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {s.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-3">
+                      <span className="mt-0.5 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full bg-aqua-500 text-navy-950">
+                        <CheckIcon className="h-4 w-4" />
+                      </span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
 
-            <div className="bg-light-aqua/10 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-primary mb-2">Prețuri și întrebări</h2>
-              <p className="text-secondary">
-                Vezi <a href="/preturi" className="text-aqua underline">prețurile și exemplele de calcul</a> sau{' '}
-                <a href="/faq" className="text-aqua underline">întrebările frecvente</a>. Program: L–V 08:00–18:00, S 09:00–13:00.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-card border-t border-custom">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-primary mb-4">Alte servicii</h2>
-            <ul className="space-y-2">
-              {others.map((o) => (
-                <li key={o.slug}>
-                  <a href={`/servicii/${o.slug}`} className="text-aqua underline">{o.name}</a>
-                </li>
+              {s.sections.map((sec) => (
+                <div key={sec.heading} className="mt-10">
+                  <h2 className="text-2xl md:text-3xl font-extrabold text-navy-950">{sec.heading}</h2>
+                  {sec.paragraphs.map((p) => (
+                    <p key={p} className="mt-4 text-lg leading-relaxed text-ink-soft">{p}</p>
+                  ))}
+                </div>
               ))}
-            </ul>
-          </div>
-        </section>
-      </main>
 
+              <div className="mt-12">
+                <h2 className="text-xl font-bold text-navy-950">Alte servicii</h2>
+                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {others.map((o) => (
+                    <li key={o.slug}>
+                      <Link
+                        href={`/servicii/${o.slug}`}
+                        className="group flex items-center justify-between rounded-2xl bg-slate-50 px-5 py-4 font-semibold text-navy-950 ring-1 ring-slate-200 hover:ring-aqua-400"
+                      >
+                        {o.name}
+                        <ArrowRightIcon className="h-4 w-4 text-aqua-700 transition group-hover:translate-x-1" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+
+            <aside className="lg:sticky lg:top-28 self-start">
+              <PriceCalculator compact />
+              <p className="mt-4 text-sm text-ink-soft">
+                Vezi și <Link href="/preturi" className="font-semibold text-aqua-700 underline">prețurile</Link> și{' '}
+                <Link href="/faq" className="font-semibold text-aqua-700 underline">întrebările frecvente</Link>.
+              </p>
+            </aside>
+          </Container>
+        </section>
+
+        <CtaBanner />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

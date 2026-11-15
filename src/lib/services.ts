@@ -1,3 +1,5 @@
+import { BUSINESS } from './business';
+
 /**
  * Serviciile listate pe site. Conținutul folosește doar informații deja publicate
  * pe aquacarpet.ro (prețuri, termene, procese) – nu adăuga servicii neconfirmate.
@@ -23,9 +25,9 @@ export const SERVICES: Service[] = [
     name: 'Spălare profesională covoare',
     shortName: 'Spălare covoare',
     icon: '🧼',
-    metaTitle: 'Spălare covoare Brașov – 13 RON/mp, uscare controlată',
+    metaTitle: `Spălare covoare Brașov – ${BUSINESS.pricePerSqm} RON/mp, uscare controlată`,
     metaDescription:
-      'Spălare profesională covoare în Brașov: curățare profundă, detergenți biodegradabili, uscare controlată și livrare în 24–48 de ore. 13 RON/mp, ridicare gratuită.',
+      `Spălare profesională covoare în Brașov: curățare profundă, detergenți biodegradabili, uscare controlată și livrare în 24–48 de ore. ${BUSINESS.pricePerSqm} RON/mp, ridicare gratuită.`,
     h1: 'Spălare profesională covoare în Brașov',
     intro:
       'Spălăm covoarele din locuințe și spații comerciale cu echipamente moderne și detergenți profesionali, apoi le uscăm în spații special amenajate, la temperatură controlată.',
@@ -51,7 +53,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Preț și termen de livrare',
         paragraphs: [
-          'Prețul spălării este de 13 RON/mp și include spălarea, uscarea, ridicarea și livrarea. Comanda minimă este de 91 RON (echivalentul a 7 mp).',
+          `Prețul spălării este de ${BUSINESS.pricePerSqm} RON/mp și include spălarea, uscarea, ridicarea și livrarea. Comanda minimă este de ${BUSINESS.minOrder} RON.`,
           'Pentru spălarea standard, covoarele ajung înapoi la tine în 24–48 de ore. Tratamentele speciale sau covoarele delicate pot necesita până la 72 de ore.',
         ],
       },
@@ -93,7 +95,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Preț',
         paragraphs: [
-          'Tratamentele speciale (anti-alergic, anti-purici) și dezinfectarea cu ozon sau aburi nu sunt incluse în prețul standard de 13 RON/mp. Contactează-ne pentru o ofertă personalizată, în funcție de covoarele tale.',
+          `Tratamentele speciale (anti-alergic, anti-purici) și dezinfectarea cu ozon sau aburi nu sunt incluse în prețul standard de ${BUSINESS.pricePerSqm} RON/mp. Contactează-ne pentru o ofertă personalizată, în funcție de covoarele tale.`,
           'Pentru covoarele cu tratamente speciale, termenul de livrare poate ajunge la 72 de ore.',
         ],
       },
@@ -129,7 +131,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Cât costă transportul',
         paragraphs: [
-          'Ridicarea și livrarea sunt gratuite în Brașov și zonele limitrofe. Plătești doar spălarea: 13 RON/mp, cu o comandă minimă de 91 RON.',
+          `Ridicarea și livrarea sunt gratuite în Brașov și zonele limitrofe. Plătești doar spălarea: ${BUSINESS.pricePerSqm} RON/mp, cu o comandă minimă de ${BUSINESS.minOrder} RON.`,
           'Comandă online pe site și primești 10% reducere la spălare.',
         ],
       },

@@ -20,8 +20,8 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <nav aria-label="Breadcrumb" className="text-sm text-white/90 mb-6">
-        <ol className="flex flex-wrap justify-center gap-1">
+      <nav aria-label="Breadcrumb" className="text-sm text-white/90 mb-5">
+        <ol className="flex flex-wrap gap-1">
           {all.map((c, i) => (
             <li key={c.path} className="flex items-center gap-1">
               {i > 0 && <span aria-hidden="true">›</span>}

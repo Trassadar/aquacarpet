@@ -11,7 +11,7 @@ export const SITE_UPDATED = '2026-11-15';
 export const BUSINESS = {
   name: 'AquaCarpet',
   description:
-    'Spălătorie profesională de covoare în Brașov, cu ridicare și livrare gratuită la domiciliu. 13 RON/mp, comandă minimă 91 RON, livrare în 24–48 de ore.',
+    'Spălătorie profesională de covoare în Brașov, cu ridicare și livrare gratuită la domiciliu. 14 RON/mp, comandă minimă 91 RON, livrare în 24–48 de ore.',
   phoneDisplay: '0757 219 695',
   phoneE164: '+40757219695',
   phoneHref: 'tel:+40757219695',
@@ -33,13 +33,29 @@ export const BUSINESS = {
     { label: 'Sâmbătă', value: '09:00 – 13:00' },
     { label: 'Duminică', value: 'Închis' },
   ],
-  pricePerSqm: 13,
+  pricePerSqm: 14,
+  /** Comanda minimă rămâne 91 RON (de confirmat cu Răzvan după schimbarea prețului la 14 RON/mp). */
   minOrder: 91,
-  minOrderSqm: 7,
   currency: 'RON',
   delivery: '24–48 de ore',
   areaServed: 'Brașov și zonele limitrofe',
+  /** Localitățile disponibile în formularul de comandă. */
+  localities: ['Brașov', 'Săcele', 'Predeal', 'Râșnov'],
+  /** Reducere afișată pe site pentru comenzile online. */
+  onlineDiscount: '10%',
 } as const;
+
+/** Suprafața sub care se aplică comanda minimă, formatată (ex: „6,5 mp”). */
+export const MIN_ORDER_SQM_LABEL = `${(BUSINESS.minOrder / BUSINESS.pricePerSqm)
+  .toFixed(1)
+  .replace(/\.0$/, '')
+  .replace('.', ',')} mp`;
+
+/** Prețul estimat pentru o suprafață dată (cu aplicarea comenzii minime). */
+export function estimatePrice(sqm: number) {
+  const raw = Math.max(0, sqm) * BUSINESS.pricePerSqm;
+  return { raw, total: sqm > 0 ? Math.max(raw, BUSINESS.minOrder) : 0, minApplied: sqm > 0 && raw < BUSINESS.minOrder };
+}
 
 export const MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(
   BUSINESS.mapsQuery,
@@ -75,10 +91,7 @@ export function localBusinessJsonLd() {
       addressCountry: BUSINESS.address.country,
     },
     hasMap: MAPS_LINK_URL,
-    areaServed: {
-      '@type': 'City',
-      name: 'Brașov',
-    },
+    areaServed: BUSINESS.localities.map((name) => ({ '@type': 'City', name })),
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
