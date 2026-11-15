@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
     });
 
     const text = await response.text();
-    let result: any;
+    let result: { ok?: boolean; error?: string; id?: string };
     try {
       result = JSON.parse(text);
     } catch {
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
 
     // orderId pastrat pentru compatibilitate cu formularul existent
     return NextResponse.json({ ok: true, orderId: result.id, id: result.id });
-  } catch (error: any) {
+  } catch {
     return NextResponse.json(
       { ok: false, error: "Eroare interna. Te rugam sa incerci din nou." },
       { status: 500 }

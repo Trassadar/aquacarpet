@@ -1,8 +1,18 @@
 'use client';
 
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
+import { BUSINESS, MIN_ORDER_LABEL } from '@/lib/business';
+import { CheckIcon, ClockIcon, PhoneIcon, ShieldIcon, TruckIcon, WhatsAppIcon } from '@/components/Icons';
+
+const inputCls = (hasError?: boolean) =>
+  `w-full rounded-xl border bg-white px-4 py-3 text-base text-ink placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-aqua-200 focus:border-aqua-500 ${
+    hasError ? 'border-red-600' : 'border-slate-300'
+  }`;
+const labelCls = 'block text-sm font-semibold text-navy-950 mb-1.5';
+const errCls = 'text-red-700 text-sm mt-1';
 
 export default function Comanda() {
   const [formData, setFormData] = useState({
@@ -150,84 +160,79 @@ export default function Comanda() {
     }
   };
 
+
   if (isSubmitted) {
     return (
-      <div className="min-h-screen">
+      <>
         <Header />
-        <main>
-          <section className="pt-24 pb-20 bg-card">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="bg-card border border-custom rounded-lg p-12">
-                <div className="text-6xl mb-6 text-aqua">✅</div>
-                <h1 className="text-3xl font-bold mb-4 text-primary">
-                  Comanda ta a fost trimisa!
-                </h1>
-                <p className="text-lg text-secondary mb-4">
-                  Multumim pentru comanda! Vei fi contactat in cel mai scurt timp 
-                  pentru confirmarea detaliilor de ridicare.
+        <main className="bg-slate-50">
+          <section className="mx-auto max-w-3xl px-4 py-16 md:py-24">
+            <div className="rounded-3xl bg-white p-8 md:p-12 text-center shadow-xl shadow-navy-950/5 ring-1 ring-slate-200">
+              <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-aqua-500 text-navy-950">
+                <CheckIcon className="h-8 w-8" />
+              </span>
+              <h1 className="mt-6 text-3xl font-extrabold text-navy-950">Comanda ta a fost trimisă!</h1>
+              <p className="mt-4 text-lg text-ink-soft">
+                Mulțumim pentru comandă! Te contactăm în cel mai scurt timp pentru confirmarea detaliilor de ridicare.
+              </p>
+              {orderId && (
+                <p className="mt-4 text-sm text-ink-soft">
+                  Număr comandă: <span className="font-mono rounded bg-aqua-50 px-2 py-1 text-navy-950">{orderId}</span>
                 </p>
-                {orderId && (
-                  <p className="text-sm text-muted mb-6">
-                    Numar comanda: <span className="font-mono bg-light-aqua/20 px-2 py-1 rounded">{orderId}</span>
-                  </p>
-                )}
-                <div className="bg-light-aqua/10 rounded-lg p-6 mb-8">
-                  <h3 className="font-semibold text-primary mb-2">Ce se intampla acum?</h3>
-                  <ul className="text-left text-secondary space-y-2">
-                    <li>• Vei primi un telefon de confirmare in maxim 2 ore</li>
-                    <li>• Stabilim impreuna data si ora potrivita pentru ridicare</li>
-                    <li>• Echipa noastra vine la adresa indicata</li>
-                    <li>• Covoarele sunt returnate curate in 24-48 ore</li>
-                  </ul>
-                </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a 
-                    href="/" 
-                    className="bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
-                  >
-                    Pagina Principala
-                  </a>
-                  <a 
-                    href="/servicii" 
-                    className="border-2 border-aqua hover:bg-aqua hover:text-white text-aqua font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
-                  >
-                    Servicii
-                  </a>
-                </div>
+              )}
+              <div className="mt-8 rounded-2xl bg-aqua-50 p-6 text-left">
+                <h2 className="font-bold text-navy-950">Ce se întâmplă acum?</h2>
+                <ul className="mt-3 space-y-2 text-ink">
+                  {[
+                    'Te sunăm pentru confirmarea comenzii',
+                    'Stabilim împreună ziua ridicării',
+                    'Echipa noastră vine la adresa indicată',
+                    'Covoarele sunt returnate curate în 24–48 de ore',
+                  ].map((t) => (
+                    <li key={t} className="flex items-start gap-2">
+                      <CheckIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-aqua-700" /> {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                <Link href="/" className="inline-flex h-12 items-center justify-center rounded-xl bg-navy-950 px-6 font-semibold text-white hover:bg-navy-800">
+                  Pagina principală
+                </Link>
+                <Link href="/servicii" className="inline-flex h-12 items-center justify-center rounded-xl px-6 font-semibold text-navy-950 ring-2 ring-navy-950 hover:bg-slate-50">
+                  Servicii
+                </Link>
               </div>
             </div>
           </section>
         </main>
         <Footer />
-      </div>
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
-      
-      <main>
-        {/* Hero Section */}
-        <section className="hero-gradient text-white pt-24 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Comanda Online
-              </h1>
-              <p className="text-xl mb-8 text-light-aqua max-w-3xl mx-auto">
-                Completeaza formularul de mai jos si te vom contacta pentru 
-                confirmarea programarii. Transport inclus! Dupa trimitere vei fi contactat pentru confirmare.
-              </p>
-            </div>
+
+      <main className="bg-slate-50">
+        <section className="relative overflow-hidden bg-bubbles text-white">
+          <span className="bubble h-64 w-64 -right-16 -top-20 animate-float" aria-hidden="true" />
+          <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-28 md:pt-16 md:pb-36">
+            <h1 className="max-w-3xl text-4xl md:text-5xl font-extrabold tracking-tight">
+              Comandă online – spălare covoare Brașov
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg md:text-xl text-white/90">
+              Completează formularul în mai puțin de un minut. Te sunăm pentru confirmare, apoi venim să ridicăm covoarele –
+              gratuit. Primești {BUSINESS.onlineDiscount} reducere la spălare pentru comanda online.
+            </p>
           </div>
         </section>
 
-        {/* Form Section */}
-        <section className="py-20 bg-card">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-card border border-custom rounded-lg p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+        <section className="relative z-10 -mt-20 md:-mt-24 pb-16 md:pb-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-8 lg:grid-cols-[1fr_340px] items-start">
+            <div className="rounded-3xl bg-white p-6 md:p-10 shadow-xl shadow-navy-950/5 ring-1 ring-slate-200">
+              <form onSubmit={handleSubmit} className="space-y-8" noValidate>
                 {/* Honeypot field - hidden from users */}
                 <input
                   type="text"
@@ -237,267 +242,167 @@ export default function Comanda() {
                   style={{ display: 'none' }}
                   tabIndex={-1}
                   autoComplete="off"
+                  aria-hidden="true"
                 />
 
-                {/* Date Personale */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">Date Personale</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <fieldset data-reveal>
+                  <legend className="flex items-center gap-3 text-lg font-bold text-navy-950">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-950 text-sm text-white" aria-hidden="true">1</span>
+                    Date de contact
+                  </legend>
+                  <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Nume complet *
-                      </label>
-                      <input
-                        type="text"
-                        name="nume"
-                        value={formData.nume}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua ${
-                          errors.nume ? 'border-red-500' : 'border-custom'
-                        }`}
-                        placeholder="Ion Popescu"
-                      />
-                      {errors.nume && (
-                        <p className="text-red-500 text-sm mt-1">{errors.nume}</p>
-                      )}
+                      <label htmlFor="f-nume" className={labelCls}>Nume complet *</label>
+                      <input type="text" id="f-nume" name="nume" autoComplete="name" value={formData.nume} onChange={handleChange} className={inputCls(!!errors.nume)} placeholder="Ion Popescu" aria-invalid={!!errors.nume} />
+                      {errors.nume && <p className={errCls}>{errors.nume}</p>}
                     </div>
-                    
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Telefon *
-                      </label>
-                      <input
-                        type="tel"
-                        name="telefon"
-                        value={formData.telefon}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua ${
-                          errors.telefon ? 'border-red-500' : 'border-custom'
-                        }`}
-                        placeholder="07xxxxxxxx"
-                      />
-                      {errors.telefon && (
-                        <p className="text-red-500 text-sm mt-1">{errors.telefon}</p>
-                      )}
+                      <label htmlFor="f-telefon" className={labelCls}>Telefon *</label>
+                      <input type="tel" id="f-telefon" name="telefon" autoComplete="tel" inputMode="tel" value={formData.telefon} onChange={handleChange} className={inputCls(!!errors.telefon)} placeholder="07xxxxxxxx" aria-invalid={!!errors.telefon} />
+                      {errors.telefon && <p className={errCls}>{errors.telefon}</p>}
                     </div>
                   </div>
-                </div>
+                </fieldset>
 
-                {/* Adresa */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">Adresa Ridicare</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Oras *
-                      </label>
-                      <select
-                        name="oras"
-                        value={formData.oras}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                      >
-                        <option value="Brasov">Brasov</option>
-                        <option value="Sacele">Sacele</option>
+                <fieldset data-reveal>
+                  <legend className="flex items-center gap-3 text-lg font-bold text-navy-950">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-950 text-sm text-white" aria-hidden="true">2</span>
+                    Adresa de ridicare
+                  </legend>
+                  <div className="mt-5 grid grid-cols-2 md:grid-cols-6 gap-4">
+                    <div className="col-span-2">
+                      <label htmlFor="f-oras" className={labelCls}>Oraș *</label>
+                      <select id="f-oras" name="oras" value={formData.oras} onChange={handleChange} className={inputCls()}>
+                        <option value="Brasov">Brașov</option>
+                        <option value="Sacele">Săcele</option>
                         <option value="Predeal">Predeal</option>
-                        <option value="Rasnov">Rasnov</option>
+                        <option value="Rasnov">Râșnov</option>
                         <option value="Altul">Altul</option>
                       </select>
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Strada *
-                      </label>
-                      <input
-                        type="text"
-                        name="strada"
-                        value={formData.strada}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua ${
-                          errors.strada ? 'border-red-500' : 'border-custom'
-                        }`}
-                        placeholder="Strada Republicii"
-                      />
-                      {errors.strada && (
-                        <p className="text-red-500 text-sm mt-1">{errors.strada}</p>
-                      )}
+                    <div className="col-span-2 md:col-span-3">
+                      <label htmlFor="f-strada" className={labelCls}>Strada *</label>
+                      <input type="text" id="f-strada" name="strada" autoComplete="address-line1" value={formData.strada} onChange={handleChange} className={inputCls(!!errors.strada)} placeholder="Strada Republicii" aria-invalid={!!errors.strada} />
+                      {errors.strada && <p className={errCls}>{errors.strada}</p>}
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Numar *
-                      </label>
-                      <input
-                        type="text"
-                        name="numar"
-                        value={formData.numar}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua ${
-                          errors.numar ? 'border-red-500' : 'border-custom'
-                        }`}
-                        placeholder="1"
-                      />
-                      {errors.numar && (
-                        <p className="text-red-500 text-sm mt-1">{errors.numar}</p>
-                      )}
+                    <div className="col-span-2 md:col-span-1">
+                      <label htmlFor="f-numar" className={labelCls}>Număr *</label>
+                      <input type="text" id="f-numar" name="numar" value={formData.numar} onChange={handleChange} className={inputCls(!!errors.numar)} placeholder="1" aria-invalid={!!errors.numar} />
+                      {errors.numar && <p className={errCls}>{errors.numar}</p>}
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Bloc
-                      </label>
-                      <input
-                        type="text"
-                        name="bloc"
-                        value={formData.bloc}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                        placeholder="A3"
-                      />
+                    <div className="md:col-span-2">
+                      <label htmlFor="f-bloc" className={labelCls}>Bloc</label>
+                      <input type="text" id="f-bloc" name="bloc" value={formData.bloc} onChange={handleChange} className={inputCls()} placeholder="A3" />
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Scara
-                      </label>
-                      <input
-                        type="text"
-                        name="scara"
-                        value={formData.scara}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                        placeholder="2"
-                      />
+                    <div className="md:col-span-2">
+                      <label htmlFor="f-scara" className={labelCls}>Scara</label>
+                      <input type="text" id="f-scara" name="scara" value={formData.scara} onChange={handleChange} className={inputCls()} placeholder="2" />
                     </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Apartament
-                      </label>
-                      <input
-                        type="text"
-                        name="ap"
-                        value={formData.ap}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                        placeholder="14"
-                      />
+                    <div className="col-span-2 md:col-span-2">
+                      <label htmlFor="f-ap" className={labelCls}>Apartament</label>
+                      <input type="text" id="f-ap" name="ap" value={formData.ap} onChange={handleChange} className={inputCls()} placeholder="14" />
                     </div>
                   </div>
-                </div>
+                </fieldset>
 
-                {/* Detalii Comanda */}
-                <div>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">Detalii Comanda</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <fieldset data-reveal>
+                  <legend className="flex items-center gap-3 text-lg font-bold text-navy-950">
+                    <span className="grid h-8 w-8 place-items-center rounded-full bg-navy-950 text-sm text-white" aria-hidden="true">3</span>
+                    Detalii comandă
+                  </legend>
+                  <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Data preferata
-                      </label>
-                      <input
-                        type="date"
-                        name="dataPreferata"
-                        value={formData.dataPreferata}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                        min={new Date().toISOString().split('T')[0]}
-                      />
+                      <label htmlFor="f-dataPreferata" className={labelCls}>Data preferată</label>
+                      <input type="date" id="f-dataPreferata" name="dataPreferata" value={formData.dataPreferata} onChange={handleChange} className={inputCls()} min={new Date().toISOString().split('T')[0]} />
                     </div>
-                    
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Interval orar preferat
-                      </label>
-                      <select
-                        name="interval"
-                        value={formData.interval}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                      >
+                      <label htmlFor="f-interval" className={labelCls}>Interval orar preferat</label>
+                      <select id="f-interval" name="interval" value={formData.interval} onChange={handleChange} className={inputCls()}>
                         <option value="">Alege interval</option>
                         <option value="09:00-12:00">09:00 - 12:00</option>
                         <option value="12:00-15:00">12:00 - 15:00</option>
                         <option value="15:00-18:00">15:00 - 18:00</option>
                       </select>
                     </div>
-                    
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Numar covoare
-                      </label>
-                      <input
-                        type="number"
-                        name="nrCovoare"
-                        value={formData.nrCovoare}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                        placeholder="ex: 3"
-                        min="1"
-                      />
+                      <label htmlFor="f-nrCovoare" className={labelCls}>Număr covoare</label>
+                      <input type="number" id="f-nrCovoare" name="nrCovoare" value={formData.nrCovoare} onChange={handleChange} className={inputCls()} placeholder="ex: 3" min="1" />
                     </div>
                   </div>
-                  
                   <div className="mt-4">
-                    <label className="block text-sm font-medium text-secondary mb-2">
-                      Observatii
-                    </label>
-                    <textarea
-                      name="observatii"
-                      value={formData.observatii}
-                      onChange={handleChange}
-                      rows={4}
-                      className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                      placeholder="Detalii suplimentare despre covoare (pete dificile, materiale speciale, etc.)"
-                    />
+                    <label htmlFor="f-observatii" className={labelCls}>Observații</label>
+                    <textarea id="f-observatii" name="observatii" value={formData.observatii} onChange={handleChange} rows={4} className={inputCls()} placeholder="Detalii suplimentare despre covoare (pete dificile, materiale speciale etc.)" />
                   </div>
-                </div>
+                </fieldset>
 
-                {/* GDPR */}
                 <div>
-                  <label className="flex items-start">
+                  <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       name="gdpr"
                       checked={formData.gdpr}
                       onChange={handleChange}
-                      className={`mt-1 mr-3 ${
-                        errors.gdpr ? 'border-red-500' : ''
-                      }`}
+                      className="mt-1 h-5 w-5 flex-shrink-0 accent-aqua-600"
+                      aria-invalid={!!errors.gdpr}
                     />
-                    <span className="text-sm text-secondary">
-                      Sunt de acord cu prelucrarea datelor personale in conformitate cu 
-                      GDPR. Datele mele vor fi folosite doar pentru procesarea acestei comenzi. *
+                    <span className="text-sm text-ink-soft">
+                      Sunt de acord cu prelucrarea datelor personale în conformitate cu GDPR. Datele mele vor fi folosite doar
+                      pentru procesarea acestei comenzi. *
                     </span>
                   </label>
-                  {errors.gdpr && (
-                    <p className="text-red-500 text-sm mt-1">{errors.gdpr}</p>
-                  )}
+                  {errors.gdpr && <p className={errCls}>{errors.gdpr}</p>}
                 </div>
 
-                {/* Submit */}
                 {submitError && (
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                    <p className="text-red-600 text-sm">{submitError}</p>
+                  <div className="rounded-xl border border-red-200 bg-red-50 p-4" role="alert">
+                    <p className="text-sm text-red-700">{submitError}</p>
                   </div>
                 )}
-                
-                <div className="flex justify-center">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="bg-aqua hover:bg-light-aqua disabled:bg-gray-400 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
-                  >
-                    {isSubmitting ? 'Se trimite...' : 'Trimite Comanda'}
-                  </button>
-                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="tap flex h-14 w-full items-center justify-center rounded-2xl bg-aqua-500 text-lg font-bold text-navy-950 shadow-lg shadow-aqua-500/30 transition hover:bg-aqua-400 disabled:bg-slate-300 disabled:shadow-none"
+                >
+                  {isSubmitting ? 'Se trimite…' : 'Trimite comanda'}
+                </button>
+                <p className="text-center text-sm text-ink-soft">{BUSINESS.pricePerSqm} RON/mp, comandă {MIN_ORDER_LABEL}. Ridicarea și livrarea sunt gratuite. Te sunăm pentru confirmare înainte de ridicare.</p>
               </form>
             </div>
+
+            <aside className="space-y-5 lg:sticky lg:top-28">
+              <div className="rounded-3xl bg-navy-950 p-6 text-white">
+                <h2 className="text-lg font-bold">De ce AquaCarpet</h2>
+                <ul className="mt-4 space-y-4">
+                  {[
+                    { icon: TruckIcon, t: 'Ridicare și livrare gratuite' },
+                    { icon: ClockIcon, t: 'Gata în 24–48 de ore' },
+                    { icon: ShieldIcon, t: 'Refacem gratuit dacă nu ești mulțumit' },
+                    { icon: CheckIcon, t: `${BUSINESS.pricePerSqm} RON/mp, comandă ${MIN_ORDER_LABEL}` },
+                  ].map(({ icon: Icon, t }) => (
+                    <li key={t} className="flex items-start gap-3">
+                      <Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-aqua-300" /> <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-3xl bg-white p-6 ring-1 ring-slate-200">
+                <h2 className="text-lg font-bold text-navy-950">Preferi să vorbim?</h2>
+                <div className="mt-4 grid gap-2">
+                  <a href={BUSINESS.phoneHref} className="flex h-12 items-center justify-center gap-2 rounded-xl font-semibold text-navy-950 ring-2 ring-navy-950 hover:bg-slate-50">
+                    <PhoneIcon className="h-5 w-5" /> {BUSINESS.phoneDisplay}
+                  </a>
+                  <a href={BUSINESS.whatsappOrderHref} target="_blank" rel="noopener noreferrer" className="flex h-12 items-center justify-center gap-2 rounded-xl bg-whatsapp font-semibold text-navy-950">
+                    <WhatsAppIcon className="h-5 w-5" /> WhatsApp
+                  </a>
+                </div>
+              </div>
+            </aside>
           </div>
         </section>
       </main>
-      
+
       <Footer />
-    </div>
+    </>
   );
 }

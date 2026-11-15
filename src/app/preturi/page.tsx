@@ -1,237 +1,135 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Metadata } from 'next';
+import PriceCalculator from '@/components/PriceCalculator';
+import { Container, CtaBanner, PageHero, PriceFacts, SectionHeading } from '@/components/sections';
+import { CheckIcon } from '@/components/Icons';
+import { BUSINESS, MIN_ORDER_LABEL, MIN_ORDER_SQM_LABEL } from '@/lib/business';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Preturi Spalatorie Covoare Brasov | 13 RON/mp | AquaCarpet',
-  description: 'Preturi competitive pentru spalatorie covoare in Brasov. 13 RON/mp, comanda minima 91 RON. Servicii profesionale, transport gratuit. Calcul transparent si fara costuri ascunse.',
-  alternates: {
-    canonical: 'https://www.aquacarpet.ro/preturi',
-  },
-};
+export const metadata = pageMetadata({
+  title: `Prețuri Spălătorie Covoare Brașov – ${BUSINESS.pricePerSqm} RON/mp`,
+  description: `Prețuri spălare covoare în Brașov: ${BUSINESS.pricePerSqm} RON/mp, comandă ${MIN_ORDER_LABEL}, ridicare și livrare gratuite. Calculator de preț, exemple de calcul și fără costuri ascunse.`,
+  path: '/preturi',
+});
+
+const fmt = (n: number) => n.toLocaleString('ro-RO', { maximumFractionDigits: 2 });
+
+const exemple = [
+  { descriere: 'Covor living (2 m × 3 m)', sqm: 6, calc: '2 × 3 = 6 mp' },
+  { descriere: 'Set 2 covoare mici (1,5 m × 2 m)', sqm: 6, calc: '3 mp + 3 mp = 6 mp' },
+  { descriere: 'Covor dormitor (2 m × 2,5 m) + covor baie (1 m × 1,5 m)', sqm: 6.5, calc: '5 mp + 1,5 mp = 6,5 mp' },
+  { descriere: 'Covor mare (3 m × 4 m)', sqm: 12, calc: '3 × 4 = 12 mp' },
+];
+
+const incluse = [
+  'Ridicare gratuită la domiciliu',
+  'Spălare profesională cu echipamente moderne',
+  'Detergenți profesionali, biodegradabili',
+  'Uscare controlată în spații specializate',
+  'Inspecție finală de calitate',
+  'Ambalare profesională la returnare',
+  'Livrare gratuită la domiciliu',
+];
+
+const extra = [
+  'Tratamente speciale (anti-alergic, anti-purici)',
+  'Reparații covoare (cusături, refacere margini)',
+  'Curățare pete foarte dificile (cerneală, vopsea)',
+  'Spălare covoare de mătase sau persane vechi',
+  'Serviciu expres (livrare în aceeași zi)',
+  'Dezinfectare cu ozon sau aburi',
+];
 
 export default function Preturi() {
-  const exempleCalcul = [
-    {
-      descriere: 'Covor living (2m x 3m)',
-      suprafata: 6,
-      pret: 91,
-      detalii: '6 mp x 13 RON = 78 RON (comanda minima: 7 mp = 91 RON)'
-    },
-    {
-      descriere: 'Set 2 covoare mici (1.5m x 2m fiecare)',
-      suprafata: 6,
-      pret: 91,
-      detalii: '3 mp + 3 mp = 6 mp x 13 RON = 78 RON (comanda minima: 7 mp = 91 RON)'
-    },
-    {
-      descriere: 'Covor dormitor (2m x 2.5m) + covor baie (1m x 1.5m)',
-      suprafata: 6.5,
-      pret: 91,
-      detalii: '6.5 mp x 13 RON = 84.5 RON ≈ 85 RON (comanda minima: 7 mp = 91 RON)'
-    },
-    {
-      descriere: 'Covor mare (3m x 4m)',
-      suprafata: 12,
-      pret: 156,
-      detalii: '12 mp x 13 RON = 156 RON'
-    }
-  ];
-
-  const serviciiIncluse = [
-    'Ridicare gratuita la domiciliu',
-    'Spalare profesionala cu echipamente moderne',
-    'Detergenti profesionali de calitate',
-    'Uscare controlata in spatii specializate',
-    'Livrare gratuita la domiciliu',
-    'Ambalare profesionala la returnare',
-    'Inspectie calitate finala'
-  ];
-
-  const serviciiNuIncluse = [
-    'Tratamente speciale (anti-alergic, anti-purici)',
-    'Reparatii covoare (cusaturi, refacere margini)',
-    'Curatare pete foarte dificile (cerneala, vopsea)',
-    'Spalare covoare de matase sau persane vechi',
-    'Serviciu expres (livrare in aceeasi zi)',
-    'Dezinfectare cu ozon sau aburi'
-  ];
-
   return (
-    <div className="min-h-screen">
+    <>
       <Header />
-      
       <main>
-        {/* Hero Section */}
-        <section className="hero-gradient text-white pt-24 pb-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Preturi Transparente si Corecte
-              </h1>
-              <p className="text-xl mb-8 text-light-aqua max-w-3xl mx-auto">
-                Calitate garantata la preturi competitive. Fara costuri ascunse, 
-                transparenta totala in calculul preturilor.
-              </p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
-                <div className="text-5xl font-bold mb-2">13 RON</div>
-                <div className="text-xl mb-2">pe metru patrat</div>
-                <div className="text-light-aqua">Comanda minima: 91 RON (7 mp)</div>
+        <PageHero
+          crumbs={[{ name: 'Prețuri', path: '/preturi' }]}
+          title={`Prețuri spălătorie covoare Brașov – ${BUSINESS.pricePerSqm} RON/mp`}
+          lead={`Simplu și transparent: ${BUSINESS.pricePerSqm} RON pe metru pătrat, cu ridicare și livrare incluse. Comandă ${MIN_ORDER_LABEL}.`}
+        />
+
+        <section className="py-14 md:py-20">
+          <Container className="grid gap-12 lg:grid-cols-2 items-start">
+            <div>
+              <SectionHeading center={false} eyebrow="Cum calculăm" title="Plătești doar suprafața reală" lead="Măsurăm fiecare covor și înmulțim suprafața cu prețul pe metru pătrat. Fără taxe de transport și fără costuri ascunse." />
+              <PriceFacts />
+              <div className="mt-8 rounded-3xl bg-navy-950 p-6 text-white">
+                <p className="text-sm text-white/80">Preț standard</p>
+                <p className="text-5xl font-black">{BUSINESS.pricePerSqm} <span className="text-2xl text-aqua-300">RON/mp</span></p>
+                <p className="mt-2 text-white/85">Comandă {MIN_ORDER_LABEL}. Pentru suprafețe sub {MIN_ORDER_SQM_LABEL} se facturează {BUSINESS.minOrder} lei.</p>
               </div>
             </div>
-          </div>
+            <div className="lg:sticky lg:top-28">
+              <PriceCalculator />
+            </div>
+          </Container>
         </section>
 
-        {/* Pret Standard */}
-        <section className="py-20 bg-card">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Cum calculam pretul?
-              </h2>
-              <p className="text-secondary text-lg">
-                Simplu si transparent - platiti doar pentru suprafata reala curatata
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="bg-card border border-custom rounded-lg p-8">
-                <h3 className="text-2xl font-bold mb-6 text-primary">Pret Standard</h3>
-                <div className="text-4xl font-bold text-aqua mb-4">13 RON/mp</div>
-                <p className="text-secondary mb-6">
-                  Pretul include servicii complete de spalare, uscare si transport.
-                </p>
-                <div className="bg-light-aqua/10 rounded-lg p-4 mb-6">
-                  <div className="font-semibold text-primary mb-2">Comanda minima:</div>
-                  <div className="text-2xl font-bold text-aqua">91 RON</div>
-                  <div className="text-sm text-muted">(echivalentul a 7 mp)</div>
-                </div>
-                <div className="space-y-3">
-                  <a 
-                    href="tel:0757219695" 
-                    className="w-full bg-white text-navy hover:bg-light-aqua font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
-                  >
-                    📞 Comandă Telefon
-                  </a>
-                  <a 
-                    href="/comanda" 
-                    className="w-full bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
-                  >
-                    🖥️ Comandă Online
-                  </a>
-                </div>
-              </div>
-              
-              <div className="bg-card border border-custom rounded-lg p-8">
-                <h3 className="text-2xl font-bold mb-6 text-primary">Ce este inclus?</h3>
-                <ul className="space-y-3">
-                  {serviciiIncluse.map((serviciu, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-aqua mr-3 mt-1">✓</span>
-                      <span className="text-secondary">{serviciu}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Exemple Calcul */}
-        <section className="py-20 bg-card">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Exemple de Calcul
-              </h2>
-              <p className="text-secondary text-lg">
-                Vezi exact cum se calculeaza pretul pentru diferite tipuri de covoare
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {exempleCalcul.map((exemplu, index) => (
-                <div key={index} className="bg-card border border-custom rounded-lg p-6">
-                  <h4 className="font-semibold text-primary mb-2">{exemplu.descriere}</h4>
-                  <div className="grid grid-cols-2 gap-4 mb-3">
-                    <div>
-                      <span className="text-sm text-muted">Suprafata:</span>
-                      <div className="font-semibold">{exemplu.suprafata} mp</div>
+        <section className="py-14 md:py-20 bg-slate-50">
+          <Container>
+            <SectionHeading eyebrow="Exemple" title="Exemple de calcul" lead="Vezi cum se calculează prețul pentru câteva covoare obișnuite." />
+            <ul className="grid gap-5 md:grid-cols-2">
+              {exemple.map((e, i) => {
+                const raw = e.sqm * BUSINESS.pricePerSqm;
+                const total = Math.max(raw, BUSINESS.minOrder);
+                return (
+                  <li key={e.descriere} data-reveal style={{ '--i': i } as React.CSSProperties} className="rounded-3xl bg-white p-6 ring-1 ring-slate-200">
+                    <h3 className="font-bold text-navy-950">{e.descriere}</h3>
+                    <div className="mt-4 flex items-end justify-between gap-4">
+                      <p className="text-sm text-ink-soft">
+                        {e.calc}
+                        <br />
+                        {fmt(e.sqm)} mp × {BUSINESS.pricePerSqm} RON = {fmt(raw)} RON
+                        {raw < BUSINESS.minOrder && (
+                          <>
+                            <br />
+                            se aplică minimul de {MIN_ORDER_SQM_LABEL} ({BUSINESS.minOrder} lei)
+                          </>
+                        )}
+                      </p>
+                      <p className="text-3xl font-extrabold text-navy-950 whitespace-nowrap">{fmt(total)} RON</p>
                     </div>
-                    <div>
-                      <span className="text-sm text-muted">Pret final:</span>
-                      <div className="font-semibold text-aqua">{exemplu.pret} RON</div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-muted bg-light-aqua/10 rounded p-2">
-                    {exemplu.detalii}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </Container>
         </section>
 
-        {/* Servicii Suplimentare */}
-        <section className="py-20 bg-card">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Servicii Suplimentare
-              </h2>
-              <p className="text-secondary text-lg">
-                Optiuni extra pentru nevoi speciale
-              </p>
-            </div>
-            
-            <div className="bg-card border border-custom rounded-lg p-8">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Ce NU este inclus in pretul standard?</h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {serviciiNuIncluse.map((serviciu, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-muted mr-3 mt-1">•</span>
-                    <span className="text-secondary">{serviciu}</span>
+        <section className="py-14 md:py-20">
+          <Container className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl bg-aqua-50 p-7">
+              <h2 className="text-2xl font-extrabold text-navy-950">Ce este inclus în preț</h2>
+              <ul className="mt-5 space-y-3">
+                {incluse.map((t) => (
+                  <li key={t} className="flex items-start gap-3">
+                    <CheckIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-aqua-700" />
+                    {t}
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 p-4 bg-light-aqua/10 rounded-lg">
-                <p className="text-secondary">
-                  <strong>Nota:</strong> Pentru aceste servicii suplimentare, va rugam sa ne contactati 
-                  pentru o oferta personalizata in functie de necesitatile dumneavoastra.
-                </p>
-              </div>
             </div>
-          </div>
+            <div className="rounded-3xl bg-slate-50 p-7 ring-1 ring-slate-200">
+              <h2 className="text-2xl font-extrabold text-navy-950">Servicii suplimentare (la cerere)</h2>
+              <p className="mt-2 text-ink-soft">Nu sunt incluse în prețul standard. Contactează-ne pentru o ofertă personalizată.</p>
+              <ul className="mt-5 space-y-3">
+                {extra.map((t) => (
+                  <li key={t} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-navy-950" aria-hidden="true" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Container>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 hero-gradient text-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Gata pentru o oferta personalizata?
-            </h2>
-            <p className="text-xl mb-8 text-light-aqua">
-              Contacteaza-ne pentru un calcul exact sau comanda online direct!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="/comanda" 
-                className="bg-white text-navy font-semibold py-3 px-8 rounded-lg hover:bg-light-aqua transition-colors inline-block"
-              >
-                Comanda Online
-              </a>
-              <a 
-                href="/contact" 
-                className="border-2 border-white hover:bg-white hover:text-navy text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
-              >
-                Contacteaza-ne
-              </a>
-            </div>
-          </div>
-        </section>
+        <CtaBanner title="Vrei un preț exact?" text="Sună-ne sau trimite-ne pe WhatsApp dimensiunile covoarelor – îți spunem imediat cât costă." />
       </main>
-      
       <Footer />
-    </div>
+    </>
   );
 }

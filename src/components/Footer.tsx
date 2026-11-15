@@ -1,117 +1,88 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { BUSINESS } from '@/lib/business';
+import { SERVICES } from '@/lib/services';
+import { MailIcon, MapPinIcon, PhoneIcon } from './Icons';
 
 export default function Footer() {
-  const [currentTheme, setCurrentTheme] = useState('');
-  const currentYear = new Date().getFullYear();
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const theme = document.documentElement.getAttribute('data-theme') || '';
-      setCurrentTheme(theme);
-    };
-
-    updateTheme();
-    
-    // Listen for theme changes
-    const observer = new MutationObserver(updateTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Determine logo based on theme
-  const getLogoSrc = () => {
-    const hasDarkTheme = currentTheme === 'dark-navy';
-    return hasDarkTheme ? '/logo-white.png' : '/logo.png';
-  };
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo si descriere */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-4">
-              <Image 
-                src={getLogoSrc()}
-                alt="AquaCarpet Logo" 
-                width={80}
-                height={24}
-                className="h-6 w-auto mr-3"
-              />
-              <span className="text-2xl font-bold text-aqua">AquaCarpet</span>
-            </div>
-            <p className="text-light-aqua mb-4">
-              Spalatorie profesionala de covoare in Brasov. Servicii de calitate la preturi competitive.
+    <footer className="bg-navy-950 text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-14 pb-8">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <span className="inline-flex rounded-2xl bg-white px-4 py-3">
+              <Image src="/logo.webp" alt="AquaCarpet" width={110} height={52} className="h-12 w-auto" />
+            </span>
+            <p className="mt-5 text-white/80">
+              Spălătorie profesională de covoare în Brașov. Ridicare și livrare gratuite, {BUSINESS.pricePerSqm} RON/mp, gata
+              în 24–48 de ore.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-light-aqua hover:text-aqua transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="text-light-aqua hover:text-aqua transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-light-aqua hover:text-aqua transition-colors">
-                Google
-              </a>
-            </div>
           </div>
 
-          {/* Link-uri rapide */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-aqua">Link-uri Rapide</h4>
-            <ul className="space-y-2">
-              <li><a href="/servicii" className="text-light-aqua hover:text-aqua transition-colors">Servicii</a></li>
-              <li><a href="/preturi" className="text-light-aqua hover:text-aqua transition-colors">Preturi</a></li>
-              <li><a href="/comanda" className="text-light-aqua hover:text-aqua transition-colors">Comanda Online</a></li>
-              <li><a href="/faq" className="text-light-aqua hover:text-aqua transition-colors">Intrebari Frecvente</a></li>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-aqua-300">Servicii</h2>
+            <ul className="mt-4 space-y-2.5">
+              {SERVICES.map((s) => (
+                <li key={s.slug}>
+                  <Link href={`/servicii/${s.slug}`} className="text-white/85 hover:text-white">
+                    {s.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-aqua">Contact</h4>
-            <ul className="space-y-2 text-light-aqua">
-              <li>📞 0757 219 695</li>
-              <li>📧 contact@aquacarpet.ro</li>
-              <li>📍 Str. Soseaua Cristianului Nr.11, Brasov</li>
-              <li>🕐 Luni - Vineri: 8:00 - 18:00</li>
-              <li>🕐 Sambata: 9:00 - 13:00</li>
-              <li>🕐 Duminica: Inchis</li>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-aqua-300">Informații</h2>
+            <ul className="mt-4 space-y-2.5">
+              <li><Link href="/preturi" className="text-white/85 hover:text-white">Prețuri și calculator</Link></li>
+              <li><Link href="/comanda" className="text-white/85 hover:text-white">Comandă online</Link></li>
+              <li><Link href="/faq" className="text-white/85 hover:text-white">Întrebări frecvente</Link></li>
+              <li><Link href="/contact" className="text-white/85 hover:text-white">Contact</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-wider text-aqua-300">Contact</h2>
+            <address className="mt-4 not-italic space-y-3 text-white/85">
+              <p className="font-semibold text-white">{BUSINESS.name}</p>
+              <p className="flex items-center gap-2">
+                <PhoneIcon className="h-4 w-4 text-aqua-300" />
+                <a href={BUSINESS.phoneHref} className="hover:text-white">{BUSINESS.phoneDisplay}</a>
+              </p>
+              <p className="flex items-center gap-2">
+                <MailIcon className="h-4 w-4 text-aqua-300" />
+                <a href={`mailto:${BUSINESS.email}`} className="hover:text-white">{BUSINESS.email}</a>
+              </p>
+              <p className="flex items-center gap-2">
+                <MapPinIcon className="h-4 w-4 text-aqua-300" />
+                {BUSINESS.addressLine}
+              </p>
+            </address>
+            <ul className="mt-4 space-y-1 text-sm text-white/80">
+              {BUSINESS.hours.map((h) => (
+                <li key={h.label}>{h.label}: {h.value}</li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-light-aqua/20 mt-8 pt-8 text-center text-light-aqua">
-          <p>&copy; {currentYear} AquaCarpet. Toate drepturile rezervate.</p>
-          <div className="mt-4 space-y-2 text-sm">
-            <p>
-              <a 
-                href="https://anpc.ro/ce-este-sal/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-light-aqua hover:text-aqua transition-colors underline"
-              >
-                ANPC - Soluționarea Online a Litigiilor
-              </a>
-            </p>
-            <p>
-              <a 
-                href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=ro" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-light-aqua hover:text-aqua transition-colors underline"
-              >
-                Platforma Europeană pentru Soluționarea Online a Litigiilor
-              </a>
-            </p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/15 pt-6 text-sm text-white/75 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {year} AquaCarpet. Toate drepturile rezervate.</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+              ANPC – SAL
+            </a>
+            <a
+              href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=ro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-white"
+            >
+              Platforma SOL (UE)
+            </a>
           </div>
         </div>
       </div>
