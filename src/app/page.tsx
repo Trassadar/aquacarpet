@@ -22,6 +22,7 @@ import { CheckIcon } from '@/components/Icons';
 import { BUSINESS, MIN_ORDER_LABEL, MIN_ORDER_SQM_LABEL } from '@/lib/business';
 import { FAQS } from '@/lib/faq';
 import { pageMetadata } from '@/lib/seo';
+import WorkshopGallery from '@/components/WorkshopGallery';
 
 export const metadata = pageMetadata({
   title: `Spălătorie Covoare Brașov | AquaCarpet – ${BUSINESS.pricePerSqm} RON/mp, Ridicare Gratuită`,
@@ -101,6 +102,8 @@ export default function Home() {
         </section>
 
         <Steps />
+
+        <WorkshopGallery />
 
         {/* PREȚ */}
         <section className="py-16 md:py-24">

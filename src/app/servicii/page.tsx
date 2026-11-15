@@ -1,6 +1,8 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Container, CtaBanner, CtaButtons, PageHero, SectionHeading, ServicesGrid, Steps } from '@/components/sections';
+import ProcessImage from '@/components/ProcessImage';
+import { WORKSHOP_PHOTOS as P } from '@/lib/workshopPhotos';
 import { ClockIcon, LeafIcon, ShieldIcon, SparklesIcon, TruckIcon, CheckIcon } from '@/components/Icons';
 import { BUSINESS } from '@/lib/business';
 import { pageMetadata } from '@/lib/seo';
@@ -37,6 +39,13 @@ export default function Servicii() {
           <Container>
             <SectionHeading eyebrow="Ce facem" title="Serviciile noastre" lead="Alege serviciul de care ai nevoie – sau sună-ne și te ajutăm să alegi." />
             <ServicesGrid />
+            <ul className="mt-12 grid gap-5 sm:grid-cols-3">
+              {[P.wash, P.spin, P.dry].map((photo) => (
+                <li key={photo.src}>
+                  <ProcessImage photo={photo} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 33vw, 100vw" />
+                </li>
+              ))}
+            </ul>
           </Container>
         </section>
 

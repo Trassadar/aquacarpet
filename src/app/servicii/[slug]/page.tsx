@@ -5,6 +5,9 @@ import Footer from '@/components/Footer';
 import JsonLd from '@/components/JsonLd';
 import PriceCalculator from '@/components/PriceCalculator';
 import { Container, CtaBanner, CtaButtons, PageHero } from '@/components/sections';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
+import ProcessImage from '@/components/ProcessImage';
+import { WORKSHOP_PHOTOS as P } from '@/lib/workshopPhotos';
 import { ArrowRightIcon, CheckIcon } from '@/components/Icons';
 import { BUSINESS, BUSINESS_ID } from '@/lib/business';
 import { SERVICES, getService } from '@/lib/services';
@@ -67,6 +70,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </ul>
               </div>
 
+              <ServicePhotos slug={s.slug} />
+
               {s.sections.map((sec) => (
                 <div key={sec.heading} className="mt-10">
                   <h2 className="text-2xl md:text-3xl font-extrabold text-navy-950">{sec.heading}</h2>
@@ -109,4 +114,35 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <Footer />
     </>
   );
+}
+
+function ServicePhotos({ slug }: { slug: string }) {
+  if (slug === 'spalare-covoare-brasov') {
+    return (
+      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <ProcessImage photo={P.wash} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" />
+        <ProcessImage photo={P.dry} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" />
+      </div>
+    );
+  }
+  if (slug === 'igienizare-covoare') {
+    return (
+      <BeforeAfterSlider
+        beforeSrc={P.before.src}
+        afterSrc={P.after.src}
+        beforeAlt={P.before.alt}
+        afterAlt={P.after.alt}
+        className="mt-8"
+      />
+    );
+  }
+  if (slug === 'ridicare-livrare-covoare-brasov') {
+    return (
+      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+        <ProcessImage photo={P.wrap} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" />
+        <ProcessImage photo={P.deliver} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw" />
+      </div>
+    );
+  }
+  return null;
 }

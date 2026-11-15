@@ -209,6 +209,29 @@ details > summary::-webkit-details-marker { display: none; }
 }
 details[open] .faq-answer { animation: fade-up 0.4s var(--ease-spring) both; }
 
+
+/* --- Fotografii atelier: Ken Burns / zoom lent la reveal și la hover --- */
+.photo-frame { isolation: isolate; }
+.ken-burns-play {
+  transform: scale(1.001);
+  transform-origin: 30% 40%;
+  transition: transform 1.1s var(--ease-spring);
+  will-change: transform;
+}
+.is-visible .ken-burns-play {
+  animation: kenburns 18s ease-out both;
+}
+@keyframes kenburns {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.1) translate3d(-2.2%, -1.4%, 0); }
+}
+@media (hover: hover) and (pointer: fine) {
+  .photo-frame:hover .ken-burns-play {
+    animation: none;
+    transform: scale(1.08) translate3d(-1%, -0.6%, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-pending { opacity: 1 !important; transform: none !important; }
   .foam, .shimmer { display: none; }

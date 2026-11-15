@@ -5,6 +5,8 @@ import { SERVICES } from '@/lib/services';
 import type { FaqItem } from '@/lib/faq';
 import Breadcrumbs, { type Crumb } from './Breadcrumbs';
 import HeroFoam from './HeroFoam';
+import ProcessImage from './ProcessImage';
+import { WORKSHOP_PHOTOS } from '@/lib/workshopPhotos';
 import {
   ArrowRightIcon,
   CheckIcon,
@@ -277,19 +279,11 @@ export function Coverage() {
               și verificăm împreună.
             </p>
           </div>
-          <div data-reveal="right" className="relative overflow-hidden rounded-3xl bg-bubbles p-8 text-white min-h-72" aria-hidden="true">
-            <span className="bubble h-40 w-40 -right-8 -top-8 animate-float" />
-            <span className="bubble h-20 w-20 left-10 bottom-10 animate-float [animation-delay:-2s]" />
-            <div className="relative grid grid-cols-2 gap-3 pb-4">
-              {BUSINESS.localities.map((l, i) => (
-                <div key={l} className={`rounded-2xl bg-white/10 p-4 ring-1 ring-white/20 backdrop-blur ${i % 2 ? 'translate-y-4' : ''}`}>
-                  <TruckIcon className="icon-drive h-5 w-5 text-aqua-300" />
-                  <p className="mt-2 font-bold">{l}</p>
-                  <p className="text-xs text-white/80">Transport gratuit</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProcessImage
+            photo={WORKSHOP_PHOTOS.deliver}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="lg:pl-2"
+          />
         </div>
       </Container>
     </section>
