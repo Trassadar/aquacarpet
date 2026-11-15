@@ -184,7 +184,7 @@ export default function Comanda() {
                 <h2 className="font-bold text-navy-950">Ce se întâmplă acum?</h2>
                 <ul className="mt-3 space-y-2 text-ink">
                   {[
-                    'Vei primi un telefon de confirmare în maximum 2 ore',
+                    'Te sunăm pentru confirmarea comenzii',
                     'Stabilim împreună data și ora potrivite pentru ridicare',
                     'Echipa noastră vine la adresa indicată',
                     'Covoarele sunt returnate curate în 24–48 de ore',
