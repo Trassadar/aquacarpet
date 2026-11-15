@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import StickyCta from "@/components/StickyCta";
 import JsonLd from "@/components/JsonLd";
-import { BUSINESS, SITE_URL, localBusinessJsonLd } from "@/lib/business";
+import { BUSINESS, MIN_ORDER_LABEL, SITE_URL, localBusinessJsonLd } from "@/lib/business";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s | AquaCarpet",
   },
   description:
-    `Spălătorie profesională de covoare în Brașov. Ridicare și livrare gratuită, ${BUSINESS.pricePerSqm} RON/mp, comandă minimă ${BUSINESS.minOrder} RON, livrare în 24–48 de ore.`,
+    `Spălătorie profesională de covoare în Brașov. Ridicare și livrare gratuită, ${BUSINESS.pricePerSqm} RON/mp, comandă ${MIN_ORDER_LABEL}, livrare în 24–48 de ore.`,
   applicationName: "AquaCarpet",
   formatDetection: { telephone: true },
   openGraph: {

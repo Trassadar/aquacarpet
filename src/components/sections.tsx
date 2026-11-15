@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { BUSINESS, MAPS_EMBED_URL, MAPS_LINK_URL, MIN_ORDER_SQM_LABEL } from '@/lib/business';
+import { BUSINESS, MAPS_EMBED_URL, MAPS_LINK_URL, MIN_ORDER_LABEL } from '@/lib/business';
 import { SERVICES } from '@/lib/services';
 import type { FaqItem } from '@/lib/faq';
 import Breadcrumbs, { type Crumb } from './Breadcrumbs';
@@ -385,7 +385,7 @@ export function PriceFacts() {
     <ul className="space-y-3">
       {[
         `${BUSINESS.pricePerSqm} RON/mp – spălare, uscare, ridicare și livrare incluse`,
-        `Comandă minimă ${BUSINESS.minOrder} RON (se aplică sub ${MIN_ORDER_SQM_LABEL})`,
+        `Comandă ${MIN_ORDER_LABEL}`,
         'Fără costuri ascunse – plătești suprafața reală măsurată',
         `${BUSINESS.onlineDiscount} reducere la spălare pentru comenzile online`,
         'Plata numerar la livrare, cu cardul sau prin transfer bancar',

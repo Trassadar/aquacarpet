@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
-import { BUSINESS } from '@/lib/business';
+import { BUSINESS, MIN_ORDER_LABEL } from '@/lib/business';
 import { CheckIcon, ClockIcon, PhoneIcon, ShieldIcon, TruckIcon, WhatsAppIcon } from '@/components/Icons';
 
 const inputCls = (hasError?: boolean) =>
@@ -366,7 +366,7 @@ export default function Comanda() {
                 >
                   {isSubmitting ? 'Se trimite…' : 'Trimite comanda'}
                 </button>
-                <p className="text-center text-sm text-ink-soft">Ridicarea și livrarea sunt gratuite. Te sunăm pentru confirmare înainte de ridicare.</p>
+                <p className="text-center text-sm text-ink-soft">{BUSINESS.pricePerSqm} RON/mp, comandă {MIN_ORDER_LABEL}. Ridicarea și livrarea sunt gratuite. Te sunăm pentru confirmare înainte de ridicare.</p>
               </form>
             </div>
 
@@ -378,7 +378,7 @@ export default function Comanda() {
                     { icon: TruckIcon, t: 'Ridicare și livrare gratuite' },
                     { icon: ClockIcon, t: 'Gata în 24–48 de ore' },
                     { icon: ShieldIcon, t: 'Refacem gratuit dacă nu ești mulțumit' },
-                    { icon: CheckIcon, t: `${BUSINESS.pricePerSqm} RON/mp, comandă minimă ${BUSINESS.minOrder} RON` },
+                    { icon: CheckIcon, t: `${BUSINESS.pricePerSqm} RON/mp, comandă ${MIN_ORDER_LABEL}` },
                   ].map(({ icon: Icon, t }) => (
                     <li key={t} className="flex items-start gap-3">
                       <Icon className="mt-0.5 h-5 w-5 flex-shrink-0 text-aqua-300" /> <span>{t}</span>

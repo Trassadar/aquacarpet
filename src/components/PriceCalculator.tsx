@@ -2,7 +2,7 @@
 
 import { useId, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { BUSINESS, MIN_ORDER_SQM_LABEL, estimatePrice } from '@/lib/business';
+import { BUSINESS, MIN_ORDER_LABEL, MIN_ORDER_SQM_LABEL, estimatePrice } from '@/lib/business';
 import { CalculatorIcon, CloseIcon, WhatsAppIcon } from './Icons';
 
 type Row = { id: number; l: string; w: string };
@@ -48,7 +48,7 @@ export default function PriceCalculator({ compact = false }: { compact?: boolean
         </span>
         <div>
           <h2 className="text-lg font-bold text-navy-950 leading-tight">Calculează prețul</h2>
-          <p className="text-sm text-ink-soft">{BUSINESS.pricePerSqm} RON/mp · ridicare și livrare gratuite</p>
+          <p className="text-sm text-ink-soft">{BUSINESS.pricePerSqm} RON/mp · {MIN_ORDER_LABEL} · transport gratuit</p>
         </div>
       </div>
 
@@ -114,8 +114,8 @@ export default function PriceCalculator({ compact = false }: { compact?: boolean
         </div>
         {est.minApplied && (
           <p className="mt-2 text-xs text-white/80">
-            {fmt(sqm)} mp × {BUSINESS.pricePerSqm} RON = {fmt(est.raw)} RON. Sub {MIN_ORDER_SQM_LABEL} se aplică comanda minimă de{' '}
-            {BUSINESS.minOrder} RON.
+            {fmt(sqm)} mp × {BUSINESS.pricePerSqm} RON = {fmt(est.raw)} RON. Comanda este de {MIN_ORDER_LABEL}, așa că sub{' '}
+            {MIN_ORDER_SQM_LABEL} se facturează {BUSINESS.minOrder} RON.
           </p>
         )}
         {!compact && (

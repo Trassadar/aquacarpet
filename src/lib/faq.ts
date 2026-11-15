@@ -1,4 +1,4 @@
-import { BUSINESS, MIN_ORDER_SQM_LABEL } from './business';
+import { BUSINESS, MIN_ORDER_LABEL, MIN_ORDER_SQM_LABEL } from './business';
 
 export type FaqItem = { q: string; a: string };
 
@@ -17,7 +17,7 @@ export const FAQS: FaqItem[] = [
   },
   {
     q: 'Cum se calculează prețul?',
-    a: `Prețul este de ${BUSINESS.pricePerSqm} RON pe metru pătrat, cu o comandă minimă de ${BUSINESS.minOrder} RON (se aplică sub ${MIN_ORDER_SQM_LABEL}). Măsurăm suprafața reală a covorului și calculăm prețul în consecință.`,
+    a: `Prețul este de ${BUSINESS.pricePerSqm} RON pe metru pătrat, comanda fiind de ${MIN_ORDER_LABEL}. Pentru suprafețe mai mici de ${MIN_ORDER_SQM_LABEL} se facturează ${BUSINESS.minOrder} lei. Măsurăm suprafața reală a covorului și calculăm prețul în consecință.`,
   },
   {
     q: 'Ce faceți cu covoarele foarte murdare sau cu pete dificile?',

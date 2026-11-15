@@ -8,10 +8,13 @@ export const SITE_URL = 'https://www.aquacarpet.ro';
 /** Data ultimei actualizări de conținut (folosită în sitemap). */
 export const SITE_UPDATED = '2026-11-15';
 
+const PRICE_PER_SQM = 14;
+const MIN_ORDER_SQM = 7;
+
 export const BUSINESS = {
   name: 'AquaCarpet',
   description:
-    'Spălătorie profesională de covoare în Brașov, cu ridicare și livrare gratuită la domiciliu. 14 RON/mp, comandă minimă 91 RON, livrare în 24–48 de ore.',
+    `Spălătorie profesională de covoare în Brașov, cu ridicare și livrare gratuită la domiciliu. ${PRICE_PER_SQM} RON/mp, comandă minim ${MIN_ORDER_SQM} mp (${MIN_ORDER_SQM * PRICE_PER_SQM} lei), livrare în 24–48 de ore.`,
   phoneDisplay: '0757 219 695',
   phoneE164: '+40757219695',
   phoneHref: 'tel:+40757219695',
@@ -33,9 +36,10 @@ export const BUSINESS = {
     { label: 'Sâmbătă', value: '09:00 – 13:00' },
     { label: 'Duminică', value: 'Închis' },
   ],
-  pricePerSqm: 14,
-  /** Comanda minimă rămâne 91 RON (de confirmat cu Răzvan după schimbarea prețului la 14 RON/mp). */
-  minOrder: 91,
+  pricePerSqm: PRICE_PER_SQM,
+  /** Comanda minimă: 7 mp; valoarea în lei se calculează din preț (7 × 14 = 98). */
+  minOrderSqm: MIN_ORDER_SQM,
+  minOrder: MIN_ORDER_SQM * PRICE_PER_SQM,
   currency: 'RON',
   delivery: '24–48 de ore',
   areaServed: 'Brașov și zonele limitrofe',
@@ -45,11 +49,11 @@ export const BUSINESS = {
   onlineDiscount: '10%',
 } as const;
 
-/** Suprafața sub care se aplică comanda minimă, formatată (ex: „6,5 mp”). */
-export const MIN_ORDER_SQM_LABEL = `${(BUSINESS.minOrder / BUSINESS.pricePerSqm)
-  .toFixed(1)
-  .replace(/\.0$/, '')
-  .replace('.', ',')} mp`;
+/** Suprafața minimă a comenzii, formatată (ex: „7 mp”). */
+export const MIN_ORDER_SQM_LABEL = `${BUSINESS.minOrderSqm} mp`;
+
+/** Comanda minimă, așa cum apare pe site: „minim 7 mp (98 lei)”. */
+export const MIN_ORDER_LABEL = `minim ${BUSINESS.minOrderSqm} mp (${BUSINESS.minOrder} lei)`;
 
 /** Prețul estimat pentru o suprafață dată (cu aplicarea comenzii minime). */
 export function estimatePrice(sqm: number) {
@@ -123,7 +127,13 @@ export function localBusinessJsonLd() {
             priceCurrency: 'RON',
             unitCode: 'MTK',
             unitText: 'mp',
+            eligibleQuantity: {
+              '@type': 'QuantitativeValue',
+              minValue: BUSINESS.minOrderSqm,
+              unitCode: 'MTK',
+            },
           },
+          description: `Comandă ${MIN_ORDER_LABEL}`,
         },
         {
           '@type': 'Offer',

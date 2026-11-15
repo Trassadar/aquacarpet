@@ -17,13 +17,13 @@ import {
   TrustBar,
 } from '@/components/sections';
 import { CheckIcon } from '@/components/Icons';
-import { BUSINESS, MIN_ORDER_SQM_LABEL } from '@/lib/business';
+import { BUSINESS, MIN_ORDER_LABEL, MIN_ORDER_SQM_LABEL } from '@/lib/business';
 import { FAQS } from '@/lib/faq';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: `Spălătorie Covoare Brașov | AquaCarpet – ${BUSINESS.pricePerSqm} RON/mp, Ridicare Gratuită`,
-  description: `Spălătorie profesională de covoare în Brașov. Ridicăm covoarele de acasă gratuit și le aducem curate în 24–48 de ore. ${BUSINESS.pricePerSqm} RON/mp, comandă minimă ${BUSINESS.minOrder} RON. Sună la ${BUSINESS.phoneDisplay}.`,
+  description: `Spălătorie profesională de covoare în Brașov. Ridicăm covoarele de acasă gratuit și le aducem curate în 24–48 de ore. ${BUSINESS.pricePerSqm} RON/mp, comandă ${MIN_ORDER_LABEL}. Sună la ${BUSINESS.phoneDisplay}.`,
   path: '/',
   absoluteTitle: true,
 });
@@ -57,7 +57,7 @@ export default function Home() {
                 </p>
                 <ul className="pb-2 text-sm text-white/85 space-y-1">
                   <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-aqua-300" /> Transport inclus, fără costuri ascunse</li>
-                  <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-aqua-300" /> Comandă minimă {BUSINESS.minOrder} lei</li>
+                  <li className="flex items-center gap-2"><CheckIcon className="h-4 w-4 text-aqua-300" /> Comandă {MIN_ORDER_LABEL}</li>
                 </ul>
               </div>
 
@@ -109,8 +109,8 @@ export default function Home() {
                   Preț spălare covoare Brașov: {BUSINESS.pricePerSqm} RON/mp, totul inclus
                 </h2>
                 <p className="mt-4 text-lg text-ink-soft">
-                  Plătești doar suprafața reală a covoarelor. Pentru comenzile sub {MIN_ORDER_SQM_LABEL} se aplică valoarea
-                  minimă de {BUSINESS.minOrder} RON.
+                  Plătești doar suprafața reală a covoarelor. Comanda este de {MIN_ORDER_LABEL}: pentru suprafețe
+                  mai mici de {MIN_ORDER_SQM_LABEL} se facturează {BUSINESS.minOrder} lei.
                 </p>
                 <div className="mt-6">
                   <PriceFacts />
@@ -138,7 +138,7 @@ export default function Home() {
                       <p className="mt-3 text-3xl font-extrabold text-navy-950">
                         {total.toLocaleString('ro-RO', { maximumFractionDigits: 2 })} <span className="text-lg">RON</span>
                       </p>
-                      {raw < BUSINESS.minOrder && <p className="mt-1 text-xs text-ink-soft">comandă minimă</p>}
+                      {raw < BUSINESS.minOrder && <p className="mt-1 text-xs text-ink-soft">{MIN_ORDER_LABEL}</p>}
                     </div>
                   );
                 })}

@@ -3,12 +3,12 @@ import Footer from '@/components/Footer';
 import PriceCalculator from '@/components/PriceCalculator';
 import { Container, CtaBanner, PageHero, PriceFacts, SectionHeading } from '@/components/sections';
 import { CheckIcon } from '@/components/Icons';
-import { BUSINESS, MIN_ORDER_SQM_LABEL } from '@/lib/business';
+import { BUSINESS, MIN_ORDER_LABEL, MIN_ORDER_SQM_LABEL } from '@/lib/business';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: `Prețuri Spălătorie Covoare Brașov – ${BUSINESS.pricePerSqm} RON/mp`,
-  description: `Prețuri spălare covoare în Brașov: ${BUSINESS.pricePerSqm} RON/mp, comandă minimă ${BUSINESS.minOrder} RON, ridicare și livrare gratuite. Calculator de preț, exemple de calcul și fără costuri ascunse.`,
+  description: `Prețuri spălare covoare în Brașov: ${BUSINESS.pricePerSqm} RON/mp, comandă ${MIN_ORDER_LABEL}, ridicare și livrare gratuite. Calculator de preț, exemple de calcul și fără costuri ascunse.`,
   path: '/preturi',
 });
 
@@ -48,7 +48,7 @@ export default function Preturi() {
         <PageHero
           crumbs={[{ name: 'Prețuri', path: '/preturi' }]}
           title={`Prețuri spălătorie covoare Brașov – ${BUSINESS.pricePerSqm} RON/mp`}
-          lead={`Simplu și transparent: ${BUSINESS.pricePerSqm} RON pe metru pătrat, cu ridicare și livrare incluse. Comandă minimă ${BUSINESS.minOrder} RON.`}
+          lead={`Simplu și transparent: ${BUSINESS.pricePerSqm} RON pe metru pătrat, cu ridicare și livrare incluse. Comandă ${MIN_ORDER_LABEL}.`}
         />
 
         <section className="py-14 md:py-20">
@@ -59,7 +59,7 @@ export default function Preturi() {
               <div className="mt-8 rounded-3xl bg-navy-950 p-6 text-white">
                 <p className="text-sm text-white/80">Preț standard</p>
                 <p className="text-5xl font-black">{BUSINESS.pricePerSqm} <span className="text-2xl text-aqua-300">RON/mp</span></p>
-                <p className="mt-2 text-white/85">Comandă minimă: {BUSINESS.minOrder} RON (pentru suprafețe sub {MIN_ORDER_SQM_LABEL}).</p>
+                <p className="mt-2 text-white/85">Comandă {MIN_ORDER_LABEL}. Pentru suprafețe sub {MIN_ORDER_SQM_LABEL} se facturează {BUSINESS.minOrder} lei.</p>
               </div>
             </div>
             <div className="lg:sticky lg:top-28">
@@ -86,7 +86,7 @@ export default function Preturi() {
                         {raw < BUSINESS.minOrder && (
                           <>
                             <br />
-                            se aplică comanda minimă
+                            se aplică minimul de {MIN_ORDER_SQM_LABEL} ({BUSINESS.minOrder} lei)
                           </>
                         )}
                       </p>

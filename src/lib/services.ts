@@ -1,4 +1,4 @@
-import { BUSINESS } from './business';
+import { BUSINESS, MIN_ORDER_LABEL } from './business';
 
 /**
  * Serviciile listate pe site. Conținutul folosește doar informații deja publicate
@@ -53,7 +53,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Preț și termen de livrare',
         paragraphs: [
-          `Prețul spălării este de ${BUSINESS.pricePerSqm} RON/mp și include spălarea, uscarea, ridicarea și livrarea. Comanda minimă este de ${BUSINESS.minOrder} RON.`,
+          `Prețul spălării este de ${BUSINESS.pricePerSqm} RON/mp și include spălarea, uscarea, ridicarea și livrarea. Comanda este de ${MIN_ORDER_LABEL}.`,
           'Pentru spălarea standard, covoarele ajung înapoi la tine în 24–48 de ore. Tratamentele speciale sau covoarele delicate pot necesita până la 72 de ore.',
         ],
       },
@@ -131,7 +131,7 @@ export const SERVICES: Service[] = [
       {
         heading: 'Cât costă transportul',
         paragraphs: [
-          `Ridicarea și livrarea sunt gratuite în Brașov și zonele limitrofe. Plătești doar spălarea: ${BUSINESS.pricePerSqm} RON/mp, cu o comandă minimă de ${BUSINESS.minOrder} RON.`,
+          `Ridicarea și livrarea sunt gratuite în Brașov și zonele limitrofe. Plătești doar spălarea: ${BUSINESS.pricePerSqm} RON/mp, comanda fiind de ${MIN_ORDER_LABEL}.`,
           'Comandă online pe site și primești 10% reducere la spălare.',
         ],
       },
