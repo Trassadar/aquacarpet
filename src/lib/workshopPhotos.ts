@@ -13,7 +13,7 @@ export const WORKSHOP_PHOTOS = {
   },
   spin: {
     src: '/images/centrifuga.webp',
-    alt: 'Centrifugă industrială orizontală pentru covoare, cu tamburul deschis, în care este introdus un covor ud rulat, în atelierul AquaCarpet',
+    alt: 'Centrifugă industrială orizontală pentru covoare, în care un covor ud rulat este introdus pe la capătul cilindrului, în atelier',
     caption: 'Stoarcere în centrifugă',
   },
   dry: {
