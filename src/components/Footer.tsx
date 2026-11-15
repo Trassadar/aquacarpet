@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BUSINESS } from '@/lib/business';
+import { BUSINESS, CONSUMER_LINKS, LEGAL_PAGES } from '@/lib/business';
 import { SERVICES } from '@/lib/services';
 import { MailIcon, MapPinIcon, PhoneIcon } from './Icons';
 
@@ -70,17 +70,17 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/15 pt-6 text-sm text-white/75 md:flex-row md:items-center md:justify-between">
-          <p>&copy; {year} AquaCarpet. Toate drepturile rezervate.</p>
+          <p>&copy; {year} {BUSINESS.name}. Toate drepturile rezervate.</p>
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+            {LEGAL_PAGES.map((page) => (
+              <Link key={page.path} href={page.path} className="underline hover:text-white">
+                {page.label}
+              </Link>
+            ))}
+            <a href={CONSUMER_LINKS.anpcSal} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
               ANPC – SAL
             </a>
-            <a
-              href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=ro"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-white"
-            >
+            <a href={CONSUMER_LINKS.sol} target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
               Platforma SOL (UE)
             </a>
           </div>

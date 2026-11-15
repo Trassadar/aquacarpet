@@ -143,3 +143,18 @@ export function localBusinessJsonLd() {
     },
   };
 }
+
+export const CONSUMER_LINKS = {
+  anpcSal: 'https://anpc.ro/ce-este-sal/',
+  sol: 'https://ec.europa.eu/consumers/odr',
+  anspdcp: 'https://www.dataprotection.ro',
+} as const;
+
+export const LEGAL_PAGES = [
+  { path: '/termeni-si-conditii', label: 'Termeni și condiții' },
+  { path: '/politica-de-confidentialitate', label: 'Politica de confidențialitate' },
+  { path: '/politica-cookies', label: 'Politica de cookie-uri' },
+] as const;
+
+/** Data afișată pe paginile legale, în format românesc. */
+export const LEGAL_UPDATED_LABEL = '15 noiembrie 2026';

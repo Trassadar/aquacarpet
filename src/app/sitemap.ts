@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { SITE_UPDATED } from '@/lib/business';
+import { LEGAL_PAGES, SITE_UPDATED } from '@/lib/business';
 import { SERVICES } from '@/lib/services';
 import { absoluteUrl } from '@/lib/seo';
 
@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/comanda', changeFrequency: 'monthly', priority: 0.8 },
     { path: '/contact', changeFrequency: 'monthly', priority: 0.7 },
     { path: '/faq', changeFrequency: 'monthly', priority: 0.6 },
+    ...LEGAL_PAGES.map((p) => ({ path: p.path, changeFrequency: 'monthly' as const, priority: 0.4 })),
   ];
 
   return pages.map((p) => ({
