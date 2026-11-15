@@ -1,59 +1,60 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Metadata } from 'next';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { BUSINESS } from '@/lib/business';
+import { pageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Preturi Spalatorie Covoare Brasov | 13 RON/mp | AquaCarpet',
-  description: 'Preturi competitive pentru spalatorie covoare in Brasov. 13 RON/mp, comanda minima 91 RON. Servicii profesionale, transport gratuit. Calcul transparent si fara costuri ascunse.',
-  alternates: {
-    canonical: 'https://www.aquacarpet.ro/preturi',
-  },
-};
+export const metadata = pageMetadata({
+  title: 'Prețuri Spălătorie Covoare Brașov – 13 RON/mp',
+  description:
+    'Prețuri spălare covoare în Brașov: 13 RON/mp, comandă minimă 91 RON, ridicare și livrare gratuite. Exemple de calcul, ce este inclus și fără costuri ascunse.',
+  path: '/preturi',
+});
 
 export default function Preturi() {
   const exempleCalcul = [
     {
-      descriere: 'Covor living (2m x 3m)',
+      descriere: 'Covor living (2 m × 3 m)',
       suprafata: 6,
       pret: 91,
-      detalii: '6 mp x 13 RON = 78 RON (comanda minima: 7 mp = 91 RON)'
+      detalii: '6 mp × 13 RON = 78 RON (se aplică comanda minimă: 91 RON)'
     },
     {
-      descriere: 'Set 2 covoare mici (1.5m x 2m fiecare)',
+      descriere: 'Set 2 covoare mici (1,5 m × 2 m fiecare)',
       suprafata: 6,
       pret: 91,
-      detalii: '3 mp + 3 mp = 6 mp x 13 RON = 78 RON (comanda minima: 7 mp = 91 RON)'
+      detalii: '3 mp + 3 mp = 6 mp × 13 RON = 78 RON (se aplică comanda minimă: 91 RON)'
     },
     {
-      descriere: 'Covor dormitor (2m x 2.5m) + covor baie (1m x 1.5m)',
+      descriere: 'Covor dormitor (2 m × 2,5 m) + covor baie (1 m × 1,5 m)',
       suprafata: 6.5,
       pret: 91,
-      detalii: '6.5 mp x 13 RON = 84.5 RON ≈ 85 RON (comanda minima: 7 mp = 91 RON)'
+      detalii: '6,5 mp × 13 RON = 84,5 RON (se aplică comanda minimă: 91 RON)'
     },
     {
-      descriere: 'Covor mare (3m x 4m)',
+      descriere: 'Covor mare (3 m × 4 m)',
       suprafata: 12,
       pret: 156,
-      detalii: '12 mp x 13 RON = 156 RON'
+      detalii: '12 mp × 13 RON = 156 RON'
     }
   ];
 
   const serviciiIncluse = [
-    'Ridicare gratuita la domiciliu',
-    'Spalare profesionala cu echipamente moderne',
-    'Detergenti profesionali de calitate',
-    'Uscare controlata in spatii specializate',
-    'Livrare gratuita la domiciliu',
-    'Ambalare profesionala la returnare',
-    'Inspectie calitate finala'
+    'Ridicare gratuită la domiciliu',
+    'Spălare profesională cu echipamente moderne',
+    'Detergenți profesionali de calitate',
+    'Uscare controlată în spații specializate',
+    'Livrare gratuită la domiciliu',
+    'Ambalare profesională la returnare',
+    'Inspecție finală de calitate'
   ];
 
   const serviciiNuIncluse = [
     'Tratamente speciale (anti-alergic, anti-purici)',
-    'Reparatii covoare (cusaturi, refacere margini)',
-    'Curatare pete foarte dificile (cerneala, vopsea)',
-    'Spalare covoare de matase sau persane vechi',
-    'Serviciu expres (livrare in aceeasi zi)',
+    'Reparații covoare (cusături, refacere margini)',
+    'Curățare pete foarte dificile (cerneală, vopsea)',
+    'Spălare covoare de mătase sau persane vechi',
+    'Serviciu expres (livrare în aceeași zi)',
     'Dezinfectare cu ozon sau aburi'
   ];
 
@@ -66,17 +67,18 @@ export default function Preturi() {
         <section className="hero-gradient text-white pt-24 pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
+              <Breadcrumbs items={[{ name: 'Prețuri', path: '/preturi' }]} />
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Preturi Transparente si Corecte
+                Prețuri spălătorie covoare Brașov – transparente și corecte
               </h1>
-              <p className="text-xl mb-8 text-light-aqua max-w-3xl mx-auto">
-                Calitate garantata la preturi competitive. Fara costuri ascunse, 
-                transparenta totala in calculul preturilor.
+              <p className="text-xl mb-8 text-white max-w-3xl mx-auto">
+                Calitate garantată la prețuri competitive. Fără costuri ascunse,
+                transparență totală în calculul prețurilor.
               </p>
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-8 max-w-md mx-auto">
                 <div className="text-5xl font-bold mb-2">13 RON</div>
-                <div className="text-xl mb-2">pe metru patrat</div>
-                <div className="text-light-aqua">Comanda minima: 91 RON (7 mp)</div>
+                <div className="text-xl mb-2">pe metru pătrat</div>
+                <div className="text-white">Comandă minimă: 91 RON (7 mp)</div>
               </div>
             </div>
           </div>
@@ -87,37 +89,37 @@ export default function Preturi() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Cum calculam pretul?
+                Cum calculăm prețul?
               </h2>
               <p className="text-secondary text-lg">
-                Simplu si transparent - platiti doar pentru suprafata reala curatata
+                Simplu și transparent – plătești doar pentru suprafața reală curățată
               </p>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="bg-card border border-custom rounded-lg p-8">
-                <h3 className="text-2xl font-bold mb-6 text-primary">Pret Standard</h3>
+                <h3 className="text-2xl font-bold mb-6 text-primary">Preț standard</h3>
                 <div className="text-4xl font-bold text-aqua mb-4">13 RON/mp</div>
                 <p className="text-secondary mb-6">
-                  Pretul include servicii complete de spalare, uscare si transport.
+                  Prețul include servicii complete de spălare, uscare și transport.
                 </p>
                 <div className="bg-light-aqua/10 rounded-lg p-4 mb-6">
-                  <div className="font-semibold text-primary mb-2">Comanda minima:</div>
+                  <div className="font-semibold text-primary mb-2">Comandă minimă:</div>
                   <div className="text-2xl font-bold text-aqua">91 RON</div>
                   <div className="text-sm text-muted">(echivalentul a 7 mp)</div>
                 </div>
                 <div className="space-y-3">
                   <a 
-                    href="tel:0757219695" 
-                    className="w-full bg-white text-navy hover:bg-light-aqua font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
+                    href={BUSINESS.phoneHref} 
+                    className="w-full bg-white text-navy border-2 border-navy hover:bg-light-aqua font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
                   >
-                    📞 Comandă Telefon
+                    📞 Comandă telefonic
                   </a>
                   <a 
                     href="/comanda" 
-                    className="w-full bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
+                    className="w-full bg-aqua-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg transition-colors inline-block text-center"
                   >
-                    🖥️ Comandă Online
+                    🖥️ Comandă online
                   </a>
                 </div>
               </div>
@@ -142,24 +144,24 @@ export default function Preturi() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Exemple de Calcul
+                Exemple de calcul
               </h2>
               <p className="text-secondary text-lg">
-                Vezi exact cum se calculeaza pretul pentru diferite tipuri de covoare
+                Vezi exact cum se calculează prețul pentru diferite covoare
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {exempleCalcul.map((exemplu, index) => (
                 <div key={index} className="bg-card border border-custom rounded-lg p-6">
-                  <h4 className="font-semibold text-primary mb-2">{exemplu.descriere}</h4>
+                  <h3 className="font-semibold text-primary mb-2">{exemplu.descriere}</h3>
                   <div className="grid grid-cols-2 gap-4 mb-3">
                     <div>
-                      <span className="text-sm text-muted">Suprafata:</span>
+                      <span className="text-sm text-muted">Suprafață:</span>
                       <div className="font-semibold">{exemplu.suprafata} mp</div>
                     </div>
                     <div>
-                      <span className="text-sm text-muted">Pret final:</span>
+                      <span className="text-sm text-muted">Preț final:</span>
                       <div className="font-semibold text-aqua">{exemplu.pret} RON</div>
                     </div>
                   </div>
@@ -172,20 +174,20 @@ export default function Preturi() {
           </div>
         </section>
 
-        {/* Servicii Suplimentare */}
+        {/* Servicii suplimentare */}
         <section className="py-20 bg-card">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                Servicii Suplimentare
+                Servicii suplimentare
               </h2>
               <p className="text-secondary text-lg">
-                Optiuni extra pentru nevoi speciale
+                Opțiuni extra pentru nevoi speciale
               </p>
             </div>
             
             <div className="bg-card border border-custom rounded-lg p-8">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Ce NU este inclus in pretul standard?</h3>
+              <h3 className="text-xl font-semibold mb-4 text-primary">Ce NU este inclus în prețul standard?</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {serviciiNuIncluse.map((serviciu, index) => (
                   <li key={index} className="flex items-start">
@@ -196,8 +198,8 @@ export default function Preturi() {
               </ul>
               <div className="mt-6 p-4 bg-light-aqua/10 rounded-lg">
                 <p className="text-secondary">
-                  <strong>Nota:</strong> Pentru aceste servicii suplimentare, va rugam sa ne contactati 
-                  pentru o oferta personalizata in functie de necesitatile dumneavoastra.
+                  <strong>Notă:</strong> Pentru aceste servicii suplimentare, contactează-ne
+                  pentru o ofertă personalizată, în funcție de nevoile tale.
                 </p>
               </div>
             </div>
@@ -208,23 +210,23 @@ export default function Preturi() {
         <section className="py-20 hero-gradient text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Gata pentru o oferta personalizata?
+              Gata pentru o ofertă personalizată?
             </h2>
-            <p className="text-xl mb-8 text-light-aqua">
-              Contacteaza-ne pentru un calcul exact sau comanda online direct!
+            <p className="text-xl mb-8 text-white">
+              Contactează-ne pentru un calcul exact sau comandă online direct!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/comanda" 
                 className="bg-white text-navy font-semibold py-3 px-8 rounded-lg hover:bg-light-aqua transition-colors inline-block"
               >
-                Comanda Online
+                Comandă online
               </a>
               <a 
                 href="/contact" 
                 className="border-2 border-white hover:bg-white hover:text-navy text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
               >
-                Contacteaza-ne
+                Contactează-ne
               </a>
             </div>
           </div>

@@ -18,7 +18,7 @@ function initializeFirebase() {
       let serviceAccount;
       try {
         serviceAccount = JSON.parse(serviceAccountKey);
-      } catch (parseError) {
+      } catch {
         throw new Error('FIREBASE_SERVICE_ACCOUNT_KEY nu este un JSON valid');
       }
 

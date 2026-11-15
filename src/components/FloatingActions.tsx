@@ -1,14 +1,14 @@
-'use client';
+import { BUSINESS } from '@/lib/business';
 
 export default function FloatingActions() {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
       {/* Call Button */}
       <a
-        href="tel:0757219695"
-        aria-label="Sună acum"
-        className="bg-aqua hover:bg-light-aqua text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl"
-        title="Suna"
+        href={BUSINESS.phoneHref}
+        aria-label={`Sună acum la ${BUSINESS.phoneDisplay}`}
+        className="bg-aqua-dark hover:bg-navy text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl"
+        title="Sună acum"
       >
         <svg 
           className="w-6 h-6" 
@@ -22,11 +22,11 @@ export default function FloatingActions() {
 
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/40757219695?text=Salut%20AquaCarpet%2C%20vreau%20sa%20fac%20o%20comanda"
+        href={BUSINESS.whatsappOrderHref}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Trimite mesaj pe WhatsApp"
-        className="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl"
+        className="bg-green-700 hover:bg-green-800 text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl"
         title="WhatsApp"
       >
         <svg 

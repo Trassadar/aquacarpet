@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
@@ -51,7 +52,7 @@ export default function Comanda() {
     }
 
     if (!formData.numar.trim()) {
-      newErrors.numar = 'Numarul este obligatoriu';
+      newErrors.numar = 'Numărul este obligatoriu';
     }
 
     if (!formData.gdpr) {
@@ -160,39 +161,39 @@ export default function Comanda() {
               <div className="bg-card border border-custom rounded-lg p-12">
                 <div className="text-6xl mb-6 text-aqua">✅</div>
                 <h1 className="text-3xl font-bold mb-4 text-primary">
-                  Comanda ta a fost trimisa!
+                  Comanda ta a fost trimisă!
                 </h1>
                 <p className="text-lg text-secondary mb-4">
-                  Multumim pentru comanda! Vei fi contactat in cel mai scurt timp 
+                  Mulțumim pentru comandă! Te contactăm în cel mai scurt timp
                   pentru confirmarea detaliilor de ridicare.
                 </p>
                 {orderId && (
                   <p className="text-sm text-muted mb-6">
-                    Numar comanda: <span className="font-mono bg-light-aqua/20 px-2 py-1 rounded">{orderId}</span>
+                    Număr comandă: <span className="font-mono bg-light-aqua/20 px-2 py-1 rounded">{orderId}</span>
                   </p>
                 )}
                 <div className="bg-light-aqua/10 rounded-lg p-6 mb-8">
-                  <h3 className="font-semibold text-primary mb-2">Ce se intampla acum?</h3>
+                  <h2 className="font-semibold text-primary mb-2">Ce se întâmplă acum?</h2>
                   <ul className="text-left text-secondary space-y-2">
-                    <li>• Vei primi un telefon de confirmare in maxim 2 ore</li>
-                    <li>• Stabilim impreuna data si ora potrivita pentru ridicare</li>
-                    <li>• Echipa noastra vine la adresa indicata</li>
-                    <li>• Covoarele sunt returnate curate in 24-48 ore</li>
+                    <li>• Vei primi un telefon de confirmare în maximum 2 ore</li>
+                    <li>• Stabilim împreună data și ora potrivite pentru ridicare</li>
+                    <li>• Echipa noastră vine la adresa indicată</li>
+                    <li>• Covoarele sunt returnate curate în 24–48 de ore</li>
                   </ul>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a 
-                    href="/" 
-                    className="bg-aqua hover:bg-light-aqua text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
+                  <Link
+                    href="/"
+                    className="bg-aqua-dark hover:bg-navy text-white font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
                   >
-                    Pagina Principala
-                  </a>
-                  <a 
-                    href="/servicii" 
-                    className="border-2 border-aqua hover:bg-aqua hover:text-white text-aqua font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
+                    Pagina principală
+                  </Link>
+                  <Link
+                    href="/servicii"
+                    className="border-2 border-navy hover:bg-navy hover:text-white text-navy font-semibold py-3 px-8 rounded-lg transition-colors inline-block"
                   >
                     Servicii
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -213,11 +214,11 @@ export default function Comanda() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Comanda Online
+                Comandă online – spălare covoare Brașov
               </h1>
-              <p className="text-xl mb-8 text-light-aqua max-w-3xl mx-auto">
-                Completeaza formularul de mai jos si te vom contacta pentru 
-                confirmarea programarii. Transport inclus! Dupa trimitere vei fi contactat pentru confirmare.
+              <p className="text-xl mb-8 text-white max-w-3xl mx-auto">
+                Completează formularul de mai jos și te contactăm pentru confirmarea
+                programării. Ridicarea și livrarea sunt gratuite!
               </p>
             </div>
           </div>
@@ -241,14 +242,15 @@ export default function Comanda() {
 
                 {/* Date Personale */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">Date Personale</h3>
+                  <h2 className="text-lg font-semibold mb-4 text-primary">Date personale</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-nume" className="block text-sm font-medium text-secondary mb-2">
                         Nume complet *
                       </label>
                       <input
                         type="text"
+                        id="f-nume"
                         name="nume"
                         value={formData.nume}
                         onChange={handleChange}
@@ -263,11 +265,12 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-telefon" className="block text-sm font-medium text-secondary mb-2">
                         Telefon *
                       </label>
                       <input
                         type="tel"
+                        id="f-telefon"
                         name="telefon"
                         value={formData.telefon}
                         onChange={handleChange}
@@ -285,32 +288,34 @@ export default function Comanda() {
 
                 {/* Adresa */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">Adresa Ridicare</h3>
+                  <h2 className="text-lg font-semibold mb-4 text-primary">Adresa de ridicare</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Oras *
+                      <label htmlFor="f-oras" className="block text-sm font-medium text-secondary mb-2">
+                        Oraș *
                       </label>
                       <select
+                        id="f-oras"
                         name="oras"
                         value={formData.oras}
                         onChange={handleChange}
                         className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
                       >
-                        <option value="Brasov">Brasov</option>
-                        <option value="Sacele">Sacele</option>
+                        <option value="Brasov">Brașov</option>
+                        <option value="Sacele">Săcele</option>
                         <option value="Predeal">Predeal</option>
-                        <option value="Rasnov">Rasnov</option>
+                        <option value="Rasnov">Râșnov</option>
                         <option value="Altul">Altul</option>
                       </select>
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-strada" className="block text-sm font-medium text-secondary mb-2">
                         Strada *
                       </label>
                       <input
                         type="text"
+                        id="f-strada"
                         name="strada"
                         value={formData.strada}
                         onChange={handleChange}
@@ -325,11 +330,12 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Numar *
+                      <label htmlFor="f-numar" className="block text-sm font-medium text-secondary mb-2">
+                        Număr *
                       </label>
                       <input
                         type="text"
+                        id="f-numar"
                         name="numar"
                         value={formData.numar}
                         onChange={handleChange}
@@ -344,11 +350,12 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-bloc" className="block text-sm font-medium text-secondary mb-2">
                         Bloc
                       </label>
                       <input
                         type="text"
+                        id="f-bloc"
                         name="bloc"
                         value={formData.bloc}
                         onChange={handleChange}
@@ -358,11 +365,12 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-scara" className="block text-sm font-medium text-secondary mb-2">
                         Scara
                       </label>
                       <input
                         type="text"
+                        id="f-scara"
                         name="scara"
                         value={formData.scara}
                         onChange={handleChange}
@@ -372,11 +380,12 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-ap" className="block text-sm font-medium text-secondary mb-2">
                         Apartament
                       </label>
                       <input
                         type="text"
+                        id="f-ap"
                         name="ap"
                         value={formData.ap}
                         onChange={handleChange}
@@ -389,14 +398,15 @@ export default function Comanda() {
 
                 {/* Detalii Comanda */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-4 text-primary">Detalii Comanda</h3>
+                  <h2 className="text-lg font-semibold mb-4 text-primary">Detalii comandă</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Data preferata
+                      <label htmlFor="f-dataPreferata" className="block text-sm font-medium text-secondary mb-2">
+                        Data preferată
                       </label>
                       <input
                         type="date"
+                        id="f-dataPreferata"
                         name="dataPreferata"
                         value={formData.dataPreferata}
                         onChange={handleChange}
@@ -406,10 +416,11 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
+                      <label htmlFor="f-interval" className="block text-sm font-medium text-secondary mb-2">
                         Interval orar preferat
                       </label>
                       <select
+                        id="f-interval"
                         name="interval"
                         value={formData.interval}
                         onChange={handleChange}
@@ -423,11 +434,12 @@ export default function Comanda() {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-secondary mb-2">
-                        Numar covoare
+                      <label htmlFor="f-nrCovoare" className="block text-sm font-medium text-secondary mb-2">
+                        Număr covoare
                       </label>
                       <input
                         type="number"
+                        id="f-nrCovoare"
                         name="nrCovoare"
                         value={formData.nrCovoare}
                         onChange={handleChange}
@@ -439,16 +451,17 @@ export default function Comanda() {
                   </div>
                   
                   <div className="mt-4">
-                    <label className="block text-sm font-medium text-secondary mb-2">
-                      Observatii
+                    <label htmlFor="f-observatii" className="block text-sm font-medium text-secondary mb-2">
+                      Observații
                     </label>
                     <textarea
-                      name="observatii"
+                      id="f-observatii"
+                        name="observatii"
                       value={formData.observatii}
                       onChange={handleChange}
                       rows={4}
                       className="w-full px-4 py-2 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua"
-                      placeholder="Detalii suplimentare despre covoare (pete dificile, materiale speciale, etc.)"
+                      placeholder="Detalii suplimentare despre covoare (pete dificile, materiale speciale etc.)"
                     />
                   </div>
                 </div>
@@ -466,7 +479,7 @@ export default function Comanda() {
                       }`}
                     />
                     <span className="text-sm text-secondary">
-                      Sunt de acord cu prelucrarea datelor personale in conformitate cu 
+                      Sunt de acord cu prelucrarea datelor personale în conformitate cu
                       GDPR. Datele mele vor fi folosite doar pentru procesarea acestei comenzi. *
                     </span>
                   </label>
@@ -486,9 +499,9 @@ export default function Comanda() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-aqua hover:bg-light-aqua disabled:bg-gray-400 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
+                    className="bg-aqua-dark hover:bg-navy disabled:bg-gray-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
                   >
-                    {isSubmitting ? 'Se trimite...' : 'Trimite Comanda'}
+                    {isSubmitting ? 'Se trimite…' : 'Trimite comanda'}
                   </button>
                 </div>
               </form>
