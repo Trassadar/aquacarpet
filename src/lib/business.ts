@@ -30,7 +30,6 @@ export const BUSINESS = {
   },
   /** Adresa pe un singur rând, așa cum apare pe site. */
   addressLine: 'Șoseaua Cristianului, Brașov',
-  mapsQuery: 'Șoseaua Cristianului, Brașov, România',
   hours: [
     { label: 'Luni – Vineri', value: '09:00 – 17:00' },
     { label: 'Sâmbătă', value: 'Închis' },
@@ -63,14 +62,6 @@ export function estimatePrice(sqm: number) {
   return { raw, total: sqm > 0 ? Math.max(raw, BUSINESS.minOrder) : 0, minApplied: sqm > 0 && raw < BUSINESS.minOrder };
 }
 
-export const MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(
-  BUSINESS.mapsQuery,
-)}&output=embed`;
-
-export const MAPS_LINK_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  BUSINESS.mapsQuery,
-)}`;
-
 export const BUSINESS_ID = `${SITE_URL}/#business`;
 
 /** Schema.org LocalBusiness (DryCleaningOrLaundry), inclusă pe toate paginile. */
@@ -96,7 +87,6 @@ export function localBusinessJsonLd() {
       addressRegion: BUSINESS.address.region,
       addressCountry: BUSINESS.address.country,
     },
-    hasMap: MAPS_LINK_URL,
     areaServed: BUSINESS.localities.map((name) => ({ '@type': 'City', name })),
     openingHoursSpecification: [
       {

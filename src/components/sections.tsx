@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { CSSProperties, ReactNode } from 'react';
-import { BUSINESS, MAPS_EMBED_URL, MAPS_LINK_URL, MIN_ORDER_LABEL } from '@/lib/business';
+import { BUSINESS, MIN_ORDER_LABEL } from '@/lib/business';
 import { SERVICES } from '@/lib/services';
 import type { FaqItem } from '@/lib/faq';
 import Breadcrumbs, { type Crumb } from './Breadcrumbs';
@@ -364,23 +364,19 @@ export function ContactBlock() {
           </li>
         </ul>
       </div>
-      <div data-reveal="right" className="lg:col-span-3 flex flex-col overflow-hidden rounded-3xl ring-1 ring-slate-200 bg-slate-100">
-        <iframe
-          src={MAPS_EMBED_URL}
-          title={`Hartă: AquaCarpet, ${BUSINESS.addressLine}`}
-          className="h-80 lg:h-full min-h-80 w-full flex-1 border-0"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        />
-        <a
-          href={MAPS_LINK_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-white px-4 py-3 font-semibold text-aqua-700 hover:text-aqua-800"
-        >
-          <MapPinIcon className="h-4 w-4" /> Deschide în Google Maps
-        </a>
+      <div data-reveal="right" className="lg:col-span-3 flex flex-col justify-center rounded-3xl bg-aqua-50 p-7 md:p-10 ring-1 ring-aqua-100">
+        <span className="grid h-12 w-12 place-items-center rounded-2xl bg-aqua-500 text-navy-950"><MapPinIcon /></span>
+        <h3 className="mt-5 text-2xl md:text-3xl font-bold text-navy-950">Venim noi la tine</h3>
+        <p className="mt-3 text-ink-soft leading-relaxed">
+          Ridicăm covoarele de acasă și le aducem înapoi curate, gratuit. Acoperim următoarele localități:
+        </p>
+        <ul className="mt-6 flex flex-wrap gap-2">
+          {BUSINESS.localities.map((l, i) => (
+            <li key={l} data-reveal="zoom" style={{ '--i': Math.min(i, 6) } as CSSProperties} className="rounded-full bg-white px-4 py-2 font-semibold text-navy-950 ring-1 ring-aqua-200 shadow-sm">
+              {l}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
